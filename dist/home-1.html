@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<!--
+  Name: Piroll - Minimal & Clean Portfolio HTML Template
+  Version: 1.0.0
+  Author: robirurk, nK
+  Website: https://nkdev.info
+  Purchase: https://nkdev.info
+  Support: https://nk.ticksy.com
+  License: You must have a valid license purchased only from ThemeForest (the above link) in order to legally use the theme for your project.
+  Copyright 2017.
+-->
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Oversight</title>
+
+    <meta name="description" content="Project Oversight Tagging Gallery">
+    <meta name="keywords" content="portfolio, clean, minimal, blog, template, portfolio website">
+    <meta name="author" content="robirurk">
+
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- START: Styles -->
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500%7cNunito+Sans:400,600,700%7cPT+Serif:400,400i" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/bower_components/fontawesome/css/font-awesome.min.css">
+
+    <!-- Stroke 7 -->
+    <link rel="stylesheet" href="assets/bower_components/pixeden-stroke-7-icon/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+
+    <!-- Flickity -->
+    <link rel="stylesheet" href="assets/bower_components/flickity/dist/flickity.min.css">
+
+    <!-- Photoswipe -->
+    <link rel="stylesheet" type="text/css" href="assets/bower_components/photoswipe/dist/photoswipe.css">
+    <link rel="stylesheet" type="text/css" href="assets/bower_components/photoswipe/dist/default-skin/default-skin.css">
+
+    <!-- Piroll -->
+    <link rel="stylesheet" href="assets/css/piroll.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <!-- <link rel="stylesheet" href="src/css/style.css"> -->
+
+    <!-- END: Styles -->
+
+    <!-- jQuery -->
+    <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- <script>
+        $(window).load(function() {
+    		// Animate loader off screen
+    		$(".se-pre-con").fadeOut("slow");
+    	});
+    </script> -->
+
+    <script type="text/javascript">
+        window.onload = function(){
+            alert('Page on Load Event');
+            $.ajax({
+              type: "GET",
+
+              url: "https://api.chucknorris.io/jokes/random",
+
+              success: function(response){
+                alert(response.value)
+
+
+
+
+              },
+              dataType: "JSON"
+              });
+        }
+    </script>
+
+    <script src="assets/js/app.js"></script>
+
+
+
+
+
+</head>
+
+
+<body>
+
+
+
+
+
+    <header class="nk-header nk-header-opaque">
+        <!--
+        START: Navbar
+
+        Additional Classes:
+            .nk-navbar-lg
+            .nk-navbar-sticky
+            .nk-navbar-autohide
+            .nk-navbar-transparent
+            .nk-navbar-transparent-always
+            .nk-navbar-white-text-on-top
+            .nk-navbar-dark
+    -->
+        <nav class="nk-navbar nk-navbar-top">
+            <div class="container">
+                <div class="nk-nav-table">
+
+                    <a href="home-1.html" class="nk-nav-logo">
+
+                        <img src="assets/images/logo.svg" alt="" width="31">
+                    </a>
+
+                    <ul class="nk-nav nk-nav-right nk-nav-icons">
+
+                        <li class="single-icon hidden-lg-up">
+                            <a href="#" class="nk-navbar-full-toggle">
+                                <span class="nk-icon-burger">
+                                    <span class="nk-t-1"></span>
+                                    <span class="nk-t-2"></span>
+                                    <span class="nk-t-3"></span>
+                                </span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- END: Navbar -->
+
+    </header>
+
+
+
+
+    <!--
+    START: Navbar Mobile
+
+    Additional Classes:
+        .nk-navbar-align-center
+        .nk-navbar-align-right
+-->
+    <nav class="nk-navbar nk-navbar-full nk-navbar-align-center" id="nk-nav-mobile">
+        <div class="nk-nav-table">
+            <div class="nk-nav-row">
+                <div class="container">
+                    <div class="nk-nav-header">
+
+                        <div class="nk-nav-logo">
+                            <a href="index.html" class="nk-nav-logo">
+                                <img src="assets/images/logo-light.svg" alt="" width="31">
+                            </a>
+                        </div>
+
+                        <div class="nk-nav-close nk-navbar-full-toggle">
+                            <span class="nk-icon-close"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nk-nav-row-full nk-nav-row">
+                <div class="nano">
+                    <div class="nano-content">
+                        <div class="nk-nav-table">
+                            <div class="nk-nav-row nk-nav-row-full nk-nav-row-center nk-navbar-mobile-content">
+                                <ul class="nk-nav">
+                                    <!-- Here will be inserted menu from [data-mobile-menu="#nk-nav-mobile"] -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nk-nav-row">
+                <div class="container">
+                    <div class="nk-nav-social">
+                        <ul>
+                            <li><a href="https://twitter.com/nkdevv"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.facebook.com/unvabdesign/"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://dribbble.com/_nK"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="https://www.instagram.com/unvab/"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- END: Navbar Mobile -->
+
+
+    <div class="nk-main bg-white">
+
+
+
+
+
+        <!-- START: Digital. Modern. Creative -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <!-- <div class="nk-gap-5 mnt-4"></div> -->
+
+                    <h2 class="display-4">Project Oversight</br>
+                        <span class="text-main">Tagging Gallery</span>
+                    </h2>
+                    <div class="nk-gap mnt-5"></div>
+
+                    <p class="lead mb-30">These are clustered images from the latest video indexing results. Please click on each cluster and tag people.</p>
+                </div>
+                <div class="col-lg-6">
+                    <!-- <div class="nk-gap-5 mnt-4"></div> -->
+
+                    <div>
+                      <span><img class="badge-class pull-right" src="assets/images/home-badge.png"></img></span>
+                      <!-- <span><img class="badge-class" src="assets/images/company-logo.png"></img></span> -->
+                    </div>
+                    <!-- <div>
+                      <img class="badge-class" src="assets/images/company-logo.png"></img>
+                    </div> -->
+
+                    <div class="nk-gap mnt-5"></div>
+
+                    <!-- <p class="lead mb-30">These are clustered images from the latest video indexing results. Please click on each cluster and tag people.</p> -->
+                </div>
+            </div>
+        </div>
+        <!-- END: Digital. Modern. Creative -->
+
+        <!-- START: Portfolio -->
+        <div class="container">
+            <!-- START: Filter -->
+            <button type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-primary">Refresh</button>
+            <button type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-success" style="margin-left: 15px;">Save & Train</button>
+            <!-- <div class="row"> -->
+              <!-- <div class="col-lg-6"> -->
+              <ul class="nk-isotope-filter nk-isotope-filter-active text-left">
+                  <li class="active" data-filter="*">All</li>
+                  <li data-filter="Branding">Branding</li>
+                  <li data-filter="Print">Print</li>
+                  <li data-filter="Design">Design</li>
+                  <li data-filter="Branding">Cluster 0</li>
+                  <li data-filter="Cluster_1">Cluster 1</li>
+                  <li data-filter="Cluster_2">Cluster 2</li>
+                  <li data-filter="Cluster_3">Cluster 3</li>
+                  <li data-filter="Cluster_4">Cluster 4</li>
+                  <li data-filter="Cluster_5">Cluster 5</li>
+              </ul>
+              <!-- END: Filter -->
+              <!-- <div class="row">
+              <div class="albums">
+                <div class="album" id="drop_1" droppable="true" contenteditable="true"><h6>Cluster 0</h6></div>
+                <div class="album" id="drop_2" droppable="true" contenteditable="true"><h6>Cluster 1</h6></div>
+                <div class="album" id="drop_3" droppable="true" contenteditable="true"><h6>Cluster 2</h6></div>
+                <div class="album" id="drop_4" droppable="true" contenteditable="true"><h6>Cluster 3</h6></div>
+                <div class="album" id="drop_5" droppable="true" contenteditable="true"><h6>Cluster 4</h6></div>
+                <div class="album" id="drop_6" droppable="true" contenteditable="true"><h6>Cluster 6</h6></div>
+              </div>
+            </div> -->
+            <!-- </div> -->
+            <!-- <div class="col-lg-6"> -->
+              <!-- <div class="gallery">
+                  <div class="nk-isotope-item">
+                  <a id="1" draggable="true"><img src="assets/images/cluster_base_0.jpg" class="img-responsive"></a>
+
+                  <a id="2" draggable="true"><img src="assets/images/cluster_base_0.jpg" class="img-responsive"></a>
+                  <a id="3" draggable="true"><img src="assets/images/cluster_base_0.jpg" class="img-responsive"></a>
+                  <a id="4" draggable="true"><img src="assets/images/cluster_base_0.jpg" class="img-responsive"></a>
+                  <a id="5" draggable="true"><img src="assets/images/cluster_base_0.jpg" class="img-responsive"></a>
+                  <a id="6" draggable="true"><img src="assets/images/cluster_base_0.jpg" class="img-responsive"></a>
+                  <a id="7" draggable="true"><img src="assets/images/cluster_base_0.jpg" class="img-responsive"></a>
+                  <a id="8" draggable="true"><img src="assets/images/cluster_base_0.jpg" class="img-responsive"></a>
+                  <a id="9" draggable="true"><img src="assets/images/cluster_base_0.jpg" class="img-responsive"></a>
+                  <a id="10" draggable="true"><img src="assets/images/cluster_base_0.jpg" class="img-responsive"></a>
+                  <a id="11" draggable="true"><img src="assets/images/cluster_base_0.jpg" class="img-responsive"></a>
+                  <a id="12" draggable="true"><img src="assets/images/cluster_base_0.jpg" class="img-responsive"></a>
+              </div> -->
+            <!-- </div> -->
+          <!-- </div> -->
+
+            <div class="nk-portfolio-list nk-isotope nk-isotope-2-cols nk-isotope-gap">
+
+
+                <div class="nk-isotope-item" data-filter="Design">
+
+                    <div class="nk-portfolio-item nk-portfolio-item-info-style-4">
+                        <div class="nk-portfolio-item-image">
+                            <div id="1" draggable="true" style="background-image: url('assets/images/cluster_base_0.jpg');"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+               <div class="nk-isotope-item" data-filter="Print">
+                    <div class="nk-portfolio-item nk-portfolio-item-info-style-4">
+                        <a href="work-single-4.html" class="nk-portfolio-item-link"></a>
+                        <div class="nk-portfolio-item-image">
+                            <div style="background-image: url('assets/images/portfolio-4-sm.jpg');"></div>
+                        </div>
+                        <div class="nk-portfolio-item-info">
+                            <div>
+                                <h2 class="portfolio-item-title h5">Glass Bottle</h2>
+                                <div class="portfolio-item-category">Print</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="nk-isotope-item" data-filter="Branding">
+                    <div class="nk-portfolio-item nk-portfolio-item-info-style-4">
+                        <a href="work-single-3.html" class="nk-portfolio-item-link"></a>
+                        <div class="nk-portfolio-item-image">
+                            <div style="background-image: url('assets/images/portfolio-8-sm.jpg');"></div>
+                        </div>
+                        <div class="nk-portfolio-item-info">
+                            <div>
+                                <h2 class="portfolio-item-title h5">Shampoo Bottle</h2>
+                                <div class="portfolio-item-category">Branding</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="nk-isotope-item" data-filter="Branding">
+                    <div class="nk-portfolio-item nk-portfolio-item-info-style-4">
+                        <a href="work-single-3.html" class="nk-portfolio-item-link"></a>
+                        <div class="nk-portfolio-item-image">
+                            <div style="background-image: url('assets/images/portfolio-3-sm.jpg');"></div>
+                        </div>
+                        <div class="nk-portfolio-item-info">
+                            <div>
+                                <h2 class="portfolio-item-title h5">Hardcover Book</h2>
+                                <div class="portfolio-item-category">Branding</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="nk-isotope-item" data-filter="Design">
+                    <div class="nk-portfolio-item nk-portfolio-item-info-style-4">
+                        <a href="work-single-3.html" class="nk-portfolio-item-link"></a>
+                        <div class="nk-portfolio-item-image">
+                            <div style="background-image: url('assets/images/portfolio-7-sm.jpg');"></div>
+                        </div>
+                        <div class="nk-portfolio-item-info">
+                            <div>
+                                <h2 class="portfolio-item-title h5">Honey Mockup</h2>
+                                <div class="portfolio-item-category">Design</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="nk-isotope-item" data-filter="Print">
+                    <div class="nk-portfolio-item nk-portfolio-item-info-style-4">
+                        <a href="work-single-3.html" class="nk-portfolio-item-link"></a>
+                        <div class="nk-portfolio-item-image">
+                            <div style="background-image: url('assets/images/portfolio-11-sm.jpg');"></div>
+                        </div>
+                        <div class="nk-portfolio-item-info">
+                            <div>
+                                <h2 class="portfolio-item-title h5">Cardboard Boxes</h2>
+                                <div class="portfolio-item-category">Print</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- </div> -->
+
+            <div class="nk-gap-4"></div>
+        </div>
+        <!-- END: Portfolio -->
+
+
+
+
+        <!--
+    START: Footer
+-->
+
+        <!-- END: Footer -->
+
+
+    </div>
+
+
+
+
+    <!-- START: Scripts -->
+
+    <!-- GSAP -->
+    <script src="assets/bower_components/gsap/src/minified/TweenMax.min.js"></script>
+    <script src="assets/bower_components/gsap/src/minified/plugins/ScrollToPlugin.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="assets/bower_components/tether/dist/js/tether.min.js"></script>
+    <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- nK Share -->
+    <script src="assets/plugins/nk-share/nk-share.js"></script>
+
+    <!-- Sticky Kit -->
+    <script src="assets/bower_components/sticky-kit/dist/sticky-kit.min.js"></script>
+
+    <!-- Jarallax -->
+    <script src="assets/bower_components/jarallax/dist/jarallax.min.js"></script>
+    <script src="assets/bower_components/jarallax/dist/jarallax-video.min.js"></script>
+
+    <!-- Flickity -->
+    <script src="assets/bower_components/flickity/dist/flickity.pkgd.min.js"></script>
+
+    <!-- Isotope -->
+    <script src="assets/bower_components/isotope/dist/isotope.pkgd.min.js"></script>
+
+    <!-- Photoswipe -->
+    <script src="assets/bower_components/photoswipe/dist/photoswipe.min.js"></script>
+    <script src="assets/bower_components/photoswipe/dist/photoswipe-ui-default.min.js"></script>
+
+    <!-- Jquery Form -->
+    <script src="assets/bower_components/jquery-form/dist/jquery.form.min.js"></script>
+
+    <!-- Jquery Validation -->
+    <script src="assets/bower_components/jquery-validation/dist/jquery.validate.min.js"></script>
+
+    <!-- Hammer.js -->
+    <script src="assets/bower_components/hammer.js/hammer.min.js"></script>
+
+    <!-- Social Likes -->
+    <script src="assets/bower_components/social-likes/dist/social-likes.min.js"></script>
+
+    <!-- NanoSroller -->
+    <script src="assets/bower_components/nanoscroller/bin/javascripts/jquery.nanoscroller.min.js"></script>
+
+    <!-- Keymaster -->
+    <script src="assets/bower_components/keymaster/keymaster.js"></script>
+
+    <!-- Piroll -->
+    <script src="assets/js/piroll.min.js"></script>
+    <script src="assets/js/piroll-init.js"></script>
+
+    <!-- Demo -->
+    <script src="assets/js/demo.js"></script>
+
+    <script src="assets/js/main.js"></script>
+    <!-- END: Scripts -->
+
+
+</body>
+
+</html>

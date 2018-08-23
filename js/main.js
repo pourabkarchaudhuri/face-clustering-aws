@@ -26,7 +26,7 @@ function w3RemoveClass(element, name) {
   arr2 = name.split(" ");
   for (i = 0; i < arr2.length; i++) {
     while (arr1.indexOf(arr2[i]) > -1) {
-      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+      arr1.splice(arr1.indexOf(arr2[i]), 1);
     }
   }
   element.className = arr1.join(" ");
@@ -46,7 +46,7 @@ for (var i = 0; i < btns.length; i++) {
 
 // Getting element from ID.
 function _(id){
-    return document.getElementById(id);	
+    return document.getElementById(id);
 }
 
 var droppedIn = false;
@@ -71,6 +71,9 @@ function drag_drop(event) {
     _('app_status').innerHTML = "Dropped "+elem_id+" into the "+event.target.getAttribute('id');
     //  _(elem_id).removeAttribute("draggable");
     _(elem_id).classList.remove('column');
+    _(elem_id).style.height = '50px';
+    _(elem_id).style.width = '50px';
+    _(elem_id).style.borderRadius = '50%';
     _(elem_id).style.cursor = "default";
     droppedIn = true;
 }
@@ -123,4 +126,4 @@ function readDropZone() {
             }
         });
     }
-} 
+}

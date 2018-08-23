@@ -27,7 +27,7 @@ var port = process.env.PORT || 5000;
 //Configure Express to Recieve JSON and extended URLencoded formats
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-
+app.use(express.static(__dirname + '/dist'));
 //Set RESTful routes
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
@@ -89,19 +89,19 @@ app.post('/tagData', function(req, res) {
                                 "data": dataArray
                             }
                             console.log(JSON.stringify(value));
-                            var options = { 
+                            var options = {
                                 method: 'POST',
                                 url: 'https://rzxagt9l02.execute-api.us-east-1.amazonaws.com/v1/autotrain',
                                 headers: {
                                     'Content-Type': 'application/json'
                                 },
                                 body: value,
-                                json: true 
+                                json: true
                             };
-        
+
                             request(options, function (error, response, body) {
                                 if (error) throw new Error(error);
-                            
+
                                 console.log(JSON.stringify(body));
                                 res.send("successful");
                             });

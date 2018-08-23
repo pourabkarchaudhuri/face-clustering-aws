@@ -1,20 +1,165 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-    <div id="myBtnContainer"></div>
-    <h2 id="app_status">App status...</h2>
-    <h1>Drop Zone</h1>
-    <button onclick="readDropZone()">Get Object Data</button>
-    <hr>
-    <div class="albums" id="drop_zones"></div>
-    <div id="main"></div>
+<!DOCTYPE html>
+<html lang="en">
 
-    <!-- external JS -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Oversight</title>
+
+    <meta name="description" content="Project Oversight Tagging Gallery">
+    <meta name="keywords" content="portfolio, clean, minimal, blog, template, portfolio website">
+    <meta name="author" content="robirurk">
+
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- START: Styles -->
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500%7cNunito+Sans:400,600,700%7cPT+Serif:400,400i" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/bower_components/fontawesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="assets/css/piroll.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="src/css/style.css"> -->
+
+    <!-- END: Styles -->
+
+    <!-- jQuery -->
+    <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+
+</head>
+
+
+<body>
+
+
+
+
+
+    <header class="nk-header nk-header-opaque">
+        <nav class="nk-navbar nk-navbar-top">
+            <div class="container">
+                <div class="nk-nav-table">
+
+                    <a href="index.html" class="nk-nav-logo">
+
+                        <img src="assets/images/logo.svg" alt="" width="31">
+                    </a>
+
+                    <ul class="nk-nav nk-nav-right nk-nav-icons">
+
+                        <li class="single-icon hidden-lg-up">
+                            <a href="#" class="nk-navbar-full-toggle">
+                                <span class="nk-icon-burger">
+                                    <span class="nk-t-1"></span>
+                                    <span class="nk-t-2"></span>
+                                    <span class="nk-t-3"></span>
+                                </span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- END: Navbar -->
+
+    </header>
+
+    <!-- END: Navbar Mobile -->
+    <div class="nk-main bg-white">
+        <!-- START: Digital. Modern. Creative -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <!-- <div class="nk-gap-5 mnt-4"></div> -->
+
+                    <h2 class="display-4">Project Oversight</br>
+                        <span class="text-main">Tagging Gallery</span>
+                    </h2>
+                    <!-- <div class="nk-gap mnt-5"></div> -->
+
+                    <p class="lead mb-30">These are clustered images from the latest video indexing results. Please click on each cluster and tag people.</p>
+                </div>
+                <div class="col-lg-6">
+                    <!-- <div class="nk-gap-5 mnt-4"></div> -->
+
+                    <div>
+                      <span><img class="badge-class pull-right" src="assets/images/home-badge.png"></img></span>
+                      <!-- <span><img class="badge-class" src="assets/images/company-logo.png"></img></span> -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- START: BODY -->
+        <div class="container">
+            <!-- START: Filter -->
+            <button onClick="window.location.reload();" type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-primary">Refresh</button>
+            <button onclick="readDropZone()" type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-success" style="margin-left: 0px;">Save & Train</button>
+            <button data-target="#complete-dialog" data-toggle="modal" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">Alert with title bar</button>
+
+              <div tabindex="-1" class="modal fade" id="complete-dialog" style="display: none;" aria-hidden="true">
+              	<div class="modal-dialog">
+              		<div class="modal-content">
+              			<div class="modal-header">
+              				<h2 class="pmd-card-title-text">Are you sure you want to Train?</h2>
+              			</div>
+              			<div class="modal-body">
+              				<p>This is going to add faces to our recognition system with the names you have given. Please go back and make sure names are proper.</p>
+              			</div>
+              			<div class="pmd-modal-action pmd-modal-bordered text-right">
+              				<button data-dismiss="modal" class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Back</button>
+              				<button data-dismiss="modal" type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default">Proceed & Train</button>
+              			</div>
+              		</div>
+              	</div>
+              </div>
+            <!-- <ul class="nk-isotope-filter nk-isotope-filter-active text-left">
+                <li class="active" data-filter="*">All</li>
+                <li data-filter="Branding">Branding</li>
+                <li data-filter="Print">Print</li>
+                <li data-filter="Design">Design</li>
+                <li data-filter="Branding">Cluster 0</li>
+                <li data-filter="Cluster_1">Cluster 1</li>
+                <li data-filter="Cluster_2">Cluster 2</li>
+                <li data-filter="Cluster_3">Cluster 3</li>
+                <li data-filter="Cluster_4">Cluster 4</li>
+                <li data-filter="Cluster_5">Cluster 5</li>
+            </ul> -->
+            <div id="myBtnContainer"></div>
+
+            <p class="lead mb-30" id="app_status">Status</p>
+            <div class="albums" id="drop_zones"></div>
+            <div id="main"></div>
+
+            <div class="nk-gap-5"></div>
+        </div>
+
+    </div>
+
+    <!-- START: Scripts -->
+    <script src="assets/bower_components/tether/dist/js/tether.min.js"></script>
+    <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="js/call.js"></script>
     <script src="js/main.js"></script>
-  </body>
+    <!-- END: Scripts -->
+
+
+</body>
+
 </html>
