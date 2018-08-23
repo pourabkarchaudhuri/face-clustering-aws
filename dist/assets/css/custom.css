@@ -1,0 +1,166 @@
+/* PLACE YOUR CUSTOM STYLES IN THIS FILE */
+/* Photo Gallery styles */
+@import "http://propeller.in/components/button/css/button.css";
+.badge-class{
+  height: 90px;
+
+}
+.gallery {
+    margin: 50px auto 0;
+    width: 840px;
+}
+.gallery a {
+    display: inline-block;
+    height: 135px;
+    margin: 10px;
+    opacity: 1;
+    position: relative;
+    width: 180px;
+
+    -khtml-user-drag: element;
+
+    /* CSS3 Prevent selections */
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+
+    /* CSS3 transition rules */
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.gallery a img {
+    border: 8px solid #fff;
+    /* border-bottom: 20px solid #fff; */
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 70%;
+    z-index: 1;
+
+    /* CSS3 Box sizing property */
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+
+    /* CSS3 transition rules */
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
+    /* CSS3 Box Shadow */
+    -moz-box-shadow: 2px 2px 4px #444;
+    -webkit-box-shadow: 2px 2px 4px #444;
+    -o-box-shadow: 2px 2px 4px #444;
+    box-shadow: 2px 2px 4px #444;
+}
+
+/* Custom CSS3 rotate transformation */
+/* .gallery a:nth-child(1) img {
+    -moz-transform: rotate(-5deg);
+    -webkit-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+} */
+
+.gallery a:hover img {
+    z-index: 5;
+
+    /* CSS3 transition rules */
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
+    /* CSS3 transform rules */
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+.gallery a.hidden {
+    height: 0;
+    margin: 0;
+    opacity: 0;
+    width: 0;
+}
+.albums {
+    margin: 40px auto 0;
+    overflow: hidden;
+    width: 840px;
+}
+.album {
+    border: 3px dashed #ccc;
+    float: left;
+    margin: 10px;
+    min-height: 100px;
+    padding: 10px;
+    width: 220px;
+
+    /* CSS3 transition rules */
+    -webkit-transition: all 1.0s ease;
+    -moz-transition: all 1.0s ease;
+    -o-transition: all 1.0s ease;
+    transition: all 1.0s ease;
+}
+.album a {
+    display: inline-block;
+    height: 56px;
+    margin: 15px;
+    opacity: 1;
+    position: relative;
+    width: 75px;
+
+    -khtml-user-drag: element;
+    -webkit-user-drag: element;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+
+    /* CSS3 Prevent selections */
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+
+    /* CSS3 transition rules */
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.album a img {
+    border: 4px solid #fff;
+    /* border-bottom: 10px solid #fff; */
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 70%;
+    z-index: 1;
+
+    /* CSS3 Box sizing property */
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+
+    /* CSS3 transition rules */
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
+    /* CSS3 Box Shadow */
+    -moz-box-shadow: 2px 2px 4px #444;
+    -webkit-box-shadow: 2px 2px 4px #444;
+    -o-box-shadow: 2px 2px 4px #444;
+    box-shadow: 2px 2px 4px #444;
+}

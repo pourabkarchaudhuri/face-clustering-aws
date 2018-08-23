@@ -1,0 +1,35 @@
+{
+    "name": "Piroll",
+    "version": "1.0.0",
+    "authors": [
+        "nK"
+    ],
+    "description": "Clean & Minimal Portfolio HTML Template",
+    "license": "Envato REGULAR LICENSE",
+    "homepage": "https://nkdev.info",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components"
+    ],
+    "dependencies": {
+        "jquery": "~3.1.1",
+        "bootstrap": "v4.0.0-alpha.6",
+        "tether": "~1.4.0",
+        "gsap": "~1.19.1",
+        "fontawesome": "~4.7.0",
+        "pixeden-stroke-7-icon": "~1.2.3",
+        "sticky-kit": "git://github.com/leafo/sticky-kit#master",
+        "social-likes": "~3.1.2",
+        "jarallax": "~1.7.3",
+        "flickity": "~2.0.5",
+        "isotope": "~3.0.2",
+        "photoswipe": "~4.1.1",
+        "jquery-validation": "~1.16.0",
+        "jquery-form": "~4.0.1",
+        "hammer.js": "~2.0.8",
+        "nanoscroller": "~0.8.7",
+        "keymaster": "~1.6.3"
+    }
+}
