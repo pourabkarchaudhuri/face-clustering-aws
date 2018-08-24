@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="dist/assets/bower_components/jquery/dist/jquery.min.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500%7cNunito+Sans:400,600,700%7cPT+Serif:400,400i" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="dist/assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="dist/assets/bower_components/fontawesome/css/font-awesome.min.css">
+    <style>
+        /* body {
+            background: #141414;
+            } */
+            #hold_images {
+            display: inline-block; 
+            white-space: nowrap;
+            height: 100px;
+            }
+            /* #icon_right {
+            right: 20; 
+            cursor: pointer;  
+            margin-top: -200px; 
+            position: fixed; 
+            }
+            #icon_left {
+            left: 20; 
+            cursor: pointer;  
+            margin-top: -200px; 
+            position: fixed; 
+            } */
+            .transition {
+                -webkit-transform: scale(1.2); 
+                -moz-transform: scale(1.2);
+                -o-transform: scale(1.2);
+                transform: scale(1.2);
+            }
+            img {
+                -webkit-transition: all .4s ease-in-out;
+                -moz-transition: all .4s ease-in-out;
+                -o-transition: all .4s ease-in-out;
+                -ms-transition: all .4s ease-in-out;
+                cursor: pointer; 
+            }
+    </style>
+</head>
+<body>
+    <div id='hold_images'></div>
+    <script>
+        images = {
+   "1" : "https://s3.amazonaws.com/finddistinctpeoplevideo-s3bucket-1qk0wkjv5fx/supervised_training/1_13.png",
+   "2" : "https://s3.amazonaws.com/finddistinctpeoplevideo-s3bucket-1qk0wkjv5fx/supervised_training/1_13.png",
+   "3" : "https://s3.amazonaws.com/finddistinctpeoplevideo-s3bucket-1qk0wkjv5fx/supervised_training/1_13.png",
+   "4" : "https://s3.amazonaws.com/finddistinctpeoplevideo-s3bucket-1qk0wkjv5fx/supervised_training/1_13.png",
+   "5" : "https://s3.amazonaws.com/finddistinctpeoplevideo-s3bucket-1qk0wkjv5fx/supervised_training/1_13.png",
+   "6" : "https://s3.amazonaws.com/finddistinctpeoplevideo-s3bucket-1qk0wkjv5fx/supervised_training/1_13.png",
+   "7" : "https://s3.amazonaws.com/finddistinctpeoplevideo-s3bucket-1qk0wkjv5fx/supervised_training/1_13.png",
+   "8" : "https://s3.amazonaws.com/finddistinctpeoplevideo-s3bucket-1qk0wkjv5fx/supervised_training/1_13.png",
+   "9" : "https://s3.amazonaws.com/finddistinctpeoplevideo-s3bucket-1qk0wkjv5fx/supervised_training/1_13.png",
+   "10" : "https://s3.amazonaws.com/finddistinctpeoplevideo-s3bucket-1qk0wkjv5fx/supervised_training/1_13.png"
+}
+
+Object.keys(images).forEach(function(path) {
+    $('#hold_images').append("<img class='my_img' width=200 height=100 src=" + images[path] + ">");
+});
+// <!-- 
+// $('body').append("<i id='icon_right'></i>");
+// $('body').append("<i id='icon_left'></i>");  -->
+// add_icon('#icon_right', 'fa fa-chevron-right', '40px', 'white');
+// add_icon('#icon_left', 'fa fa-chevron-left', '40px', 'white');
+
+// $(document).ready(function(){
+//     $('.my_img').hover(function() {
+//         $(this).addClass('transition');
+
+//     }, function() {
+//         $(this).removeClass('transition');
+//     });
+// });
+
+// $(document).on('click', '#icon_right, #icon_left', function() {
+//     if($(this).attr('id') == 'icon_right') {
+//         $('body').animate({scrollLeft: 1000}, 800);
+//         } else {
+//         $('body').animate({scrollLeft: -1000}, 800);
+//     }
+// });
+    </script>
+</body>
+</html>

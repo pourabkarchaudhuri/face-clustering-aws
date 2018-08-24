@@ -37,6 +37,11 @@
 
     <!-- jQuery -->
     <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script>
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+        })
+        </script>
 
 </head>
 
@@ -82,6 +87,7 @@
     <div class="nk-main bg-white">
         <!-- START: Digital. Modern. Creative -->
         <div class="container">
+                
             <div class="row">
                 <div class="col-lg-6">
                     <!-- <div class="nk-gap-5 mnt-4"></div> -->
@@ -97,7 +103,7 @@
                     <!-- <div class="nk-gap-5 mnt-4"></div> -->
 
                     <div>
-                      <span><img class="badge-class pull-right" src="assets/images/home-badge.png"></img></span>
+                      <span><img class="badge-class pull-right" draggable="false" src="assets/images/home-badge.png"></img></span>
                       <!-- <span><img class="badge-class" src="assets/images/company-logo.png"></img></span> -->
                     </div>
 
@@ -109,7 +115,7 @@
         <!-- START: BODY -->
         <div class="container">
             <!-- START: Filter -->
-            <button onClick="window.location.reload();" type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-primary">Refresh</button>
+            <button onClick="window.location.reload();" type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-primary" data-toggle="tooltip" data-placement="top" title="Resets people groups">Refresh</button>
             <button onclick="readDropZone()" type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-success" style="margin-left: 0px;">Save & Train</button>
             <button data-target="#complete-dialog" data-toggle="modal" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">Alert with title bar</button>
 
@@ -142,11 +148,18 @@
                 <li data-filter="Cluster_5">Cluster 5</li>
             </ul> -->
             <div id="myBtnContainer"></div>
-
             <p class="lead mb-30" id="app_status">Status</p>
-            <div class="albums" id="drop_zones"></div>
-            <div id="main"></div>
+            <hr>
+            <div class="albums" id="drop_zones">
+                    
+            </div>
+           
+            <div class="mainContainer">
+                <div id="main"></div>
+            </div>
+            
 
+            </div>
             <div class="nk-gap-5"></div>
         </div>
 

@@ -46,7 +46,7 @@ module.exports = {
           })
           var uniqueClusterIndex = clusterIndex.filter((v, i, a) => a.indexOf(v) === i);
           uniqueClusterIndex.forEach((id) => {
-              name = "cluster" + id;
+              name = "Person-" + (parseInt(id)+1);
               images = [];
               data.Contents.forEach((element, i) => {
                   element.Key.replace(re, (match, p1, p2, p3) => {

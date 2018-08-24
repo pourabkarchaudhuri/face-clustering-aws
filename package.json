@@ -17,6 +17,7 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "glob": "^7.1.2",
+    "propellerkit-custom-scrollbar": "^1.2.0",
     "request": "^2.88.0"
   }
 }

@@ -1,10 +1,19 @@
+@import "http://propeller.in/components/badge/css/badge.css";
+@import "http://fonts.googleapis.com/icon?family=Material+Icons";
+@import "http://propeller.in/components/icons/css/google-icons.css";
+/* mCustomScrollbar css*/
+@import "http://propeller.in/components/custom-scrollbar/css/jquery.mCustomScrollbar.css";
+
+/* Propeller scrollbar css*/
+@import "http://propeller.in/components/custom-scrollbar/css/pmd-scrollbar.css";
+
 .objects {
     display:inline-block;
     background-color: white;
     /* border: #DFBC6A 1px solid; */
     width: 100px;
     height: 100px;
-    margin: 10px;
+    margin: 5px;
     padding: 5px;
     font-size: 18px;
     text-align: center;
@@ -19,9 +28,24 @@ body {
 }
 
 /* Center website */
-.main {
-    max-width: 1000px;
+.mainContainer{
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    display: block;
+    width: 100%;
+    height: 123px;
     margin: auto;
+
+}
+#main {
+    width: 2000px;
+    height:200px;
+    
+    /* margin: auto; */
+    /* display: inline-block;  */
+    white-space: nowrap;
+
 }
 
 h1 {
@@ -88,26 +112,221 @@ h1 {
 }
 
 .albums {
-    margin: 40px auto 0;
+    margin: auto 0;
     overflow: hidden;
     width: 840px;
 }
 .album {
-    border: 3px dashed #ccc;
-    float: left;
-    margin: 10px;
-    min-height: 200px;
-    padding: 10px;
-    width: 350px;
+    /* border: 3px dashed #ccc; */
+    /* float: left; */
+    /* margin: 10px;
+    height: 75px;
+    padding: 15px;
+    width: 100px;
+    border-radius: 50%;  */
+    /* background-size: 90px 70px; */
+    /* background-repeat: no-repeat; */
+    /* background- */
+    /* border: 2px solid black; */
+    /* padding: 25px; */
+    /* background: url(mountain.jpg); */
+    /* background-repeat: no-repeat;
+    background-size: 220px 97px;
+    background-origin: content-box; */
+
+    width: 100px;
+    height: 10vh;
+    border:3px dashed #ccc;
+    border-radius: 50%;
+    padding: 5px;
+    position: relative;
+    left: 8%;
 
     /* CSS3 transition rules */
-    -webkit-transition: all 1.0s ease;
+    /* -webkit-transition: all 1.0s ease;
     -moz-transition: all 1.0s ease;
     -o-transition: all 1.0s ease;
-    transition: all 1.0s ease;
+    transition: all 1.0s ease; */
 }
 
 h6 {
     display: block;
     /* border: 1px solid rgb(75, 74, 42) */
+}
+
+/* .idiv {
+    background-repeat: no-repeat;
+    border: 3px dashed rgb(51, 17, 17);
+    border-radius: 50%;
+}
+
+#example2 {
+    border: 2px dashed black;
+    padding: 25px;
+    background: url(mountain.jpg);
+    background-repeat: no-repeat;
+    background-size: 300px 100px;
+} */
+
+.divimgparent {
+    width: 100px;
+    height: 10vh;
+    border:1px dashed red;
+    border-radius: 50%;
+    padding: 5px
+}
+.divimg { 
+    width: 80px;
+    height:80px;
+    background-repeat: no-repeat;
+    background-size: contain; /*background-attachment: fixed;*/ ;
+    /* border: 1px solid black; */
+    border-radius: 50%;
+    padding: 7px;
+    color: white;
+    /* margin: px; */
+    box-shadow: 2px 2px 2px #999;
+
+}
+
+input[type=text] {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    font-size: 70%;
+    background-color: white;
+    /* background-image: url(searchicon.png); */
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 5px 10px;
+    position: relative;
+    left: 0%;
+}
+
+.input-class:focus {
+    border-radius: 15px;
+    outline: none;
+
+}
+
+.horizontal-scroll {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    /* .card {
+        display: inline-block; */
+    /* } */
+}
+/* 
+#carousel {
+    width: 100%;
+    height: 150px;
+    background-color: #ff0000;
+    
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+}
+
+#carousel .card {
+    display: inline-block;
+} */
+
+.cover-container {
+    height: 180px;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+/* .cover-item {
+    position: relative;
+    display: inline-block;
+    margin: 8px 8px;
+    box-shadow: 2px 2px 4px #bbb;
+    border-top-right-radius: 4px;
+    width: 116px;
+    height: 158px;
+    vertical-align: bottom;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+  .scrolling-wrapper .card {
+    display: inline-block;
+  }
+  .scrolling-wrapper-flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .scrolling-wrapper-flexbox .card {
+    flex: 0 0 auto;
+    margin-right: 3px;
+  }
+  .card {
+    border: 1px solid white;
+    width: 150px;
+    height: 75px;
+    background: black;
+  }
+  .scrolling-wrapper, .scrolling-wrapper-flexbox {
+    height: 75px;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+  .scrolling-wrapper::-webkit-scrollbar, .scrolling-wrapper-flexbox::-webkit-scrollbar {
+    display: none;
+  }
+  
+.subClass {
+    height: 190px;
+    width: 170px;
+    display: inline-block;
+    padding:10px;
+    /* border: 1px solid red; */
+}
+
+/* .badge-class {
+    position: relative;
+    top: -10%;
+} */
+
+/* #badge{
+    position: relative;
+    top: 5px;
+    right:-28%;
+} */
+
+
+.pmd-badge[data-badge]::after {
+    background: #f48d42;
+    color: #fff;
+    font-family: Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 0.75rem;
+    font-weight: 700;
+    height: 22px;
+    width: 22px;
+    line-height: 22px;
+    border-radius: 50%;
+    right: -24px;
+    top: -10px;
+    content: attr(data-badge);
+    position: absolute;
+    text-align: center;
+}
+
+
+.pmd-badge.pmd-badge-overlap::after {
+    
+    top: -43px;
+    right: -15px;
 }
