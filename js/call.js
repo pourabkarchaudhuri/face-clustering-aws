@@ -73,6 +73,8 @@ $.ajax({
             inputElement.setAttribute('required', 'true');
             inputElement.id = obj.name;
             inputElement.className = 'input-class';
+            inputElement.style.textAlign = "center";
+            inputElement.setAttribute('spellcheck','false');
             inputElement.placeholder = obj.name;
             inputElement.name = obj.name;
             subDiv.appendChild(dz_div);

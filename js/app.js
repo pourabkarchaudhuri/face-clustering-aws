@@ -13,6 +13,31 @@ $(".mainContainer").mCustomScrollbar({
 
 });//end of document ready
 
+function loopNext(){
+    $('#mainContainer').stop().animate({scrollLeft:'+=20'}, 'fast', 'linear', loopNext);
+}
+
+function loopPrev(){
+    $('#mainContainer').stop().animate({scrollLeft:'-=20'}, 'fast', 'linear', loopPrev);
+}
+
+function stop(){
+    $('#mainContainer').stop();
+}
+
+
+$('#next').hover(function () {
+   loopNext();
+},function () {
+   stop();
+});
+
+$('#prev').hover(function () {
+   loopPrev();
+},function () {
+   stop();
+});
+
 //web scraper api call
 function sendMessage(){
 
