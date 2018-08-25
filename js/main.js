@@ -223,15 +223,15 @@ function readDropZone(event) {
         // console.log(element_id_att);
         // name = element_id_att;
         $('img[path="'+element_id_att +'"]').each(function(i, el) {
-            images.push(el.src);
+            images.push(el.src.replace('https://s3.amazonaws.com/finddistinctpeoplevideo-s3bucket-1qk0wkjv5fx/', ''));
         });
         var childDiv = element.getElementsByTagName('input')[0];
-        var numPattern = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+        var numPattern = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
         if (childDiv.value) {
             // console.log(numPattern.test(childDiv.value))
             if (!numPattern.test(childDiv.value)) {
                 //Storing the new tagged value and making JSON.
-                name = childDiv.value;
+                name = childDiv.value.replace(/ /g, "_");
             } else {
                 event.target.setAttribute('data-message', "No special characters other than alfabets are allowed");
                 event.target.setAttribute('data-type', 'warning');
@@ -258,6 +258,7 @@ function readDropZone(event) {
         })
         images = [];
         if( _("drop_zones").children.length == i + 1) {
+            console.log("inside~~~~~~");
             // console.log(JSON.stringify(data));
             if (textValueFlag) {
                 // console.log("inside2", _("drop_zones").children.length, textValueCount);
@@ -265,15 +266,39 @@ function readDropZone(event) {
                 event.target.setAttribute('data-message', "All the people are still not renamed.");
                 return false;
             } else {
+
                 // Training
-                console.log(JSON.stringify(data));
+                console.log("Before AJAX : ");
                 var target = $('#submit-btn-id');
                 target.attr('data-og-text', target.html()).html("Training : <i class='fa fa-cog fa-spin'></i>");
                 event.target.setAttribute('data-message', "Training");
                 event.target.setAttribute('data-type', 'success');
-                setTimeout(() => {
-                    target.attr('data-og-text', target.html()).html("Trained");
-                }, 3000)
+                // setTimeout(() => {
+                //     target.attr('data-og-text', target.html()).html("Trained");
+                // }, 3000)
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:5000/tagData",
+                    async: false,
+                    data: {data},
+                
+                    success: function(response){
+                        console.log("Response : " + JSON.stringify(response));
+                        if(response.status == 200){
+                            target.attr('data-og-text', target.html()).html("Trained");
+                            // alert("Success");
+                            console.log("Success");
+                            console.log(JSON.stringify(response))
+                        }
+                        else{
+                            // alert("Failure");
+                            console.log("Error Training")
+                        }
+                       
+                    },
+                    dataType: "JSON"
+                });
+                
             }
         }
         // event.target.removeAttribute('data-message');

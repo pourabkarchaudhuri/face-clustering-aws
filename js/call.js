@@ -10,7 +10,11 @@ $.ajax({
         // btn.setAttribute('onclick', "filterSelection('all')")
         // btn.innerHTML = 'ALL';
         // document.getElementById('myBtnContainer').appendChild(btn);
+        if (response.status == 400) {
+            $('#no-data-alert').show();
 
+        } else {
+            $('#main-container-payload').show();
         var imgCount = 0;
         response.results.forEach(function(obj, i) {
             // var btn = document.createElement('BUTTON');
@@ -122,7 +126,7 @@ $.ajax({
         })
 
         document.getElementById('main').style.width =  imgCount * 110 +"px";
-
+    }
 
     },
     dataType: "JSON"

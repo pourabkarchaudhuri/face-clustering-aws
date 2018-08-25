@@ -2,6 +2,7 @@
 
 $(function () {
 //On Page load behavior
+// $('#no-data-alert').hide();
 $(".mainContainer").mCustomScrollbar({
     axis:"x" // vertical and horizontal scrollbar
 });

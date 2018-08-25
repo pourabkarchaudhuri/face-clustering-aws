@@ -33,7 +33,9 @@ module.exports = {
         };
       
         s3.listObjectsV2(params, function(err, data) {
+            console.log(data);
           if (err) console.log(err, err.stack); // an error occurred
+          if (data.KeyCount != 1) {
           data.Contents.splice(0, 1);
           var clusterIndex = [];
           dataArray = [];
@@ -75,6 +77,9 @@ module.exports = {
                   callback(null, dataArray);
               }
           })
+        } else {
+            callback("no_data", null)
+        }
         });
       },
       "listBucketElements": function(callback) {

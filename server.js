@@ -34,91 +34,124 @@ app.get('/', function(req, res) {
 });
 
 app.get('/getImages', function(req, resp) {
+    console.log("Called");
     s3_test.ListBuckets((err, res) => {
-        resp.status(200).json({
-            "results": res
-        })
+        if (err) {
+            resp.status(200).json({
+                "status": 400,
+                "results": "no_data"
+            })
+        } else {
+            resp.status(200).json({
+                "status": 200,
+                "results": res
+            })
+        }
     })
 })
 
 app.post('/tagData', function(req, res) {
-    var untagged;
-    fs.readFile('./untagged_values.json', {encoding: 'utf-8'}, function(err,data){
-        if (err) {
-            // fs.truncate('./untagged_values.json', 0, function(){console.log('done')})
-            console.log(err)
-        } else {
-            untagged = JSON.parse(data);
-            req.body.data.forEach((element, i) => {
-                untagged.data.forEach((ele) => {
-                    if (element.folder_id == ele.name) {
-                        ele.name = element.name.replace(/ /g, "_");
-                        if (element.images != 0) {
-                            element.images.forEach((imagePath) => {
-                                untagged.data.forEach((obj) => {
-                                    obj.images.forEach((img, i1) => {
-                                        if (img == imagePath) {
-                                            obj.images.splice(i1, 1);
-                                        }
-                                    })
-                                })
-                                ele.images.push(imagePath);
-                            })
-                        }
-                    }
-                })
-                if (req.body.data.length == i +1) {
-                    // console.log(JSON.stringify(untagged));
-                    var images = [];
-                    var name = null;
-                    var dataArray = [];
-                    untagged.data.forEach((element, i1) => {
-                        name = element.name;
-                        element.images.forEach((ele) => {
-                            var tmp = ele.replace('https://s3.amazonaws.com/finddistinctpeoplevideo-s3bucket-1qk0wkjv5fx/', '');
-                            images.push(tmp)
-                        })
-                        dataArray.push({
-                            "name": name,
-                            "images": images
-                        })
-                        images = [];
-                        if (untagged.data.length == i1 + 1) {
-                            // console.log(dataArray);
-                            var value = {
-                                "data": dataArray
-                            }
-                            console.log(JSON.stringify(value));
-                            var options = {
-                                method: 'POST',
-                                url: 'https://rzxagt9l02.execute-api.us-east-1.amazonaws.com/v1/autotrain',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: value,
-                                json: true
-                            };
+    console.log("AJAX calls Request")
+    console.log("Request Payload : " + req.body);
+    var options = {
+        method: 'POST',
+        url: 'https://rzxagt9l02.execute-api.us-east-1.amazonaws.com/v1/autotrain',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: req.body,
+        json: true
+    };
 
-                            request(options, function (error, response, body) {
-                                if (error) throw new Error(error);
-
-                                console.log(JSON.stringify(body));
-                                res.send("successful");
-                            });
-                            // var tagged = JSON.stringify(dataArray);
-                            // fs.writeFile("./tagged_values.json", tagged, function(err) {
-                            //     if(err) {
-                            //         console.log(err);
-                            //     }
-                            //     console.log("The file was saved!");
-                            //     // res.send("successful");
-                            // });
-                        }
-                    })
-                }
-            })
+    request(options, function (error, response, body) {
+        if (error){
+            res.send(error)
         }
-    })
+
+        // console.log(JSON.stringify(body));
+        console.log("+++++++++++++++++++++++++++++");
+        console.log("Response from Lambda API, passing to AJAX back")
+        console.log(JSON.stringify(body));
+        res.send(body);
+    });
+    // var untagged;
+    // fs.readFile('./untagged_values.json', {encoding: 'utf-8'}, function(err,data){
+    //     if (err) {
+    //         // fs.truncate('./untagged_values.json', 0, function(){console.log('done')})
+    //         console.log(err)
+    //     } else {
+    //         untagged = JSON.parse(data);
+    //         req.body.data.forEach((element, i) => {
+    //             untagged.data.forEach((ele) => {
+    //                 if (element.folder_id == ele.name) {
+    //                     ele.name = element.name.replace(/ /g, "_");
+    //                     if (element.images != 0) {
+    //                         element.images.forEach((imagePath) => {
+    //                             untagged.data.forEach((obj) => {
+    //                                 obj.images.forEach((img, i1) => {
+    //                                     if (img == imagePath) {
+    //                                         obj.images.splice(i1, 1);
+    //                                     }
+    //                                 })
+    //                             })
+    //                             ele.images.push(imagePath);
+    //                         })
+    //                     }
+    //                 }
+    //             })
+    //             if (req.body.data.length == i +1) {
+    //                 // console.log(JSON.stringify(untagged));
+    //                 var images = [];
+    //                 var name = null;
+    //                 var dataArray = [];
+    //                 untagged.data.forEach((element, i1) => {
+    //                     name = element.name;
+    //                     element.images.forEach((ele) => {
+    //                         var tmp = ele.replace('https://s3.amazonaws.com/finddistinctpeoplevideo-s3bucket-1qk0wkjv5fx/', '');
+    //                         images.push(tmp)
+    //                     })
+    //                     dataArray.push({
+    //                         "name": name,
+    //                         "images": images
+    //                     })
+    //                     images = [];
+    //                     if (untagged.data.length == i1 + 1) {
+    //                         // console.log(dataArray);
+    //                         var value = {
+    //                             "data": dataArray
+    //                         }
+    //                         console.log(JSON.stringify(value));
+    //                         var options = {
+    //                             method: 'POST',
+    //                             url: 'https://rzxagt9l02.execute-api.us-east-1.amazonaws.com/v1/autotrain',
+    //                             headers: {
+    //                                 'Content-Type': 'application/json'
+    //                             },
+    //                             body: value,
+    //                             json: true
+    //                         };
+
+    //                         request(options, function (error, response, body) {
+    //                             if (error) throw new Error(error);
+
+    //                             console.log(JSON.stringify(body));
+    //                             res.send("successful");
+    //                         });
+    //                         // var tagged = JSON.stringify(dataArray);
+    //                         // fs.writeFile("./tagged_values.json", tagged, function(err) {
+    //                         //     if(err) {
+    //                         //         console.log(err);
+    //                         //     }
+    //                         //     console.log("The file was saved!");
+    //                         //     // res.send("successful");
+    //                         // });
+    //                     }
+    //                 })
+    //             }
+    //         })
+    //     }
+    // })
+    // res.send("success");
 });
 
 // Start the server
