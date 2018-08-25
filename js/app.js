@@ -7,9 +7,9 @@ $(".mainContainer").mCustomScrollbar({
 });
     //on Click web module button
     //on click submit on web module form
-    $('#submit-btn-id').on('click', function () {
-        sendMessage();
-    });
+    // $('#submit-btn-id').on('click', function () {
+    //     sendMessage();
+    // });
 
 });//end of document ready
 

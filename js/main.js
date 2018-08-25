@@ -144,7 +144,8 @@ function drag_end(event) {
 }
 
 // Reading the dropzone and make changes to backend.
-function readDropZone() {
+function readDropZone(event) {
+    console.log(event.target);
     // var data = [];
     // var images = [];
     // var name;
@@ -214,6 +215,7 @@ function readDropZone() {
     var images = [];
     var name = null;
     var c = 0;
+    var textValueFlag = false;
     for(var i=0; i < _("drop_zones").children.length; i++) {
         var element_id_att = _("drop_zones").children[i].getAttribute('id-att');
         // var path = _(element_id).getAttribute('path');
@@ -224,15 +226,57 @@ function readDropZone() {
             images.push(el.src);
         });
         var childDiv = element.getElementsByTagName('input')[0];
-        console.log(childDiv.value);
+        var numPattern = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+        if (childDiv.value) {
+            // console.log(numPattern.test(childDiv.value))
+            if (!numPattern.test(childDiv.value)) {
+                //Storing the new tagged value and making JSON.
+                name = childDiv.value;
+            } else {
+                event.target.setAttribute('data-message', "No special characters other than alfabets are allowed");
+                event.target.setAttribute('data-type', 'warning');
+                return false;
+            }
+        } else {
+            // console.log(numPattern.test(childDiv.value))
+            // event.target.setAttribute('data-message', "Please fill out person-" + i + " value.");
+            // event.target.setAttribute('data-action', "true");
+            // event.target.setAttribute('data-action-text', "Ok");
+            textValueFlag = true;
+            console.log("inside");
+        }
 
         // var requiredDiv = childDiv.getElementsByTagName('input')[0];
         // console.log(requiredDiv);
         // var value2 = parseInt(requiredDiv.getAttribute('data-badge'));
         // requiredDiv.setAttribute('data-badge', c);
         // c = 0;
-        console.log(images);
+        // console.log(images);
+        data.push({
+            "name": name,
+            "images": images
+        })
         images = [];
+        if( _("drop_zones").children.length == i + 1) {
+            // console.log(JSON.stringify(data));
+            if (textValueFlag) {
+                // console.log("inside2", _("drop_zones").children.length, textValueCount);
+                // textValueCount = 0;
+                event.target.setAttribute('data-message', "All the people are still not renamed.");
+                return false;
+            } else {
+                // Training
+                console.log(JSON.stringify(data));
+                var target = $('#submit-btn-id');
+                target.attr('data-og-text', target.html()).html("Training : <i class='fa fa-cog fa-spin'></i>");
+                event.target.setAttribute('data-message', "Training");
+                event.target.setAttribute('data-type', 'success');
+                setTimeout(() => {
+                    target.attr('data-og-text', target.html()).html("Trained");
+                }, 3000)
+            }
+        }
+        // event.target.removeAttribute('data-message');
     }
     // for(var i=0; i < _("main").children.length; i++) {
     //     var id = _("main").children[i].id;
