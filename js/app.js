@@ -2,7 +2,9 @@
 
 $(function () {
 //On Page load behavior
-
+$(".mainContainer").mCustomScrollbar({
+    axis:"x" // vertical and horizontal scrollbar
+});
     //on Click web module button
     //on click submit on web module form
     $('#submit-btn-id').on('click', function () {
