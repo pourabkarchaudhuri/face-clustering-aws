@@ -2,7 +2,7 @@
 
 $(function () {
 //On Page load behavior
-    $("#web-summarizer-form").hide();
+
     //on Click web module button
     //on click submit on web module form
     $('#submit-btn-id').on('click', function () {

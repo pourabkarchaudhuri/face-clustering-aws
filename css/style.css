@@ -14,6 +14,15 @@
 
 /* Propeller alert */
 @import "http://propeller.in/components/alert/css/alert.css";
+
+/* Propeller card css*/
+@import "http://propeller.in/components/card/css/card.css";
+
+/* mCustomScrollbar css*/
+@import "http://propeller.in/components/custom-scrollbar/css/jquery.mCustomScrollbar.css";
+
+/* Propeller scrollbar css*/
+@import "http://propeller.in/components/custom-scrollbar/css/pmd-scrollbar.css";
 .objects {
     display:inline-block;
     background-color: white;
