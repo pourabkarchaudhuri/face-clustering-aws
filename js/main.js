@@ -184,10 +184,10 @@ function readDropZone() {
     //         }
     //     });
     // }
-    var data = [];
-    var images = [];
-    var name = null;
-    console.log("inside");
+    // var data = [];
+    // var images = [];
+    // var name = null;
+    // console.log("inside");
     // for(var i=0; i < _("drop_zones").children.length; i++) {
     //     var element_id = _("drop_zones").children[i].id;
     //     // var path = _(element_id).getAttribute('path');
@@ -223,8 +223,10 @@ function readDropZone() {
         $('img[path="'+element_id_att +'"]').each(function(i, el) {
             images.push(el.src);
         });
-        // var childDiv = element.getElementsByTagName('div')[0];
-        // var requiredDiv = childDiv.getElementsByTagName('div')[0];
+        var childDiv = element.getElementsByTagName('input')[0];
+        console.log(childDiv.value);
+
+        // var requiredDiv = childDiv.getElementsByTagName('input')[0];
         // console.log(requiredDiv);
         // var value2 = parseInt(requiredDiv.getAttribute('data-badge'));
         // requiredDiv.setAttribute('data-badge', c);
