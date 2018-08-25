@@ -1,12 +1,19 @@
 @import "http://propeller.in/components/badge/css/badge.css";
 @import "http://fonts.googleapis.com/icon?family=Material+Icons";
 @import "http://propeller.in/components/icons/css/google-icons.css";
-/* mCustomScrollbar css*/
-@import "http://propeller.in/components/custom-scrollbar/css/jquery.mCustomScrollbar.css";
 
-/* Propeller scrollbar css*/
-@import "http://propeller.in/components/custom-scrollbar/css/pmd-scrollbar.css";
 
+/* Bootstrap css */
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css";
+
+/* Propeller typography */
+@import "http://propeller.in/components/typography/css/typography.css";
+
+/* Propeller buttons */
+@import "http://propeller.in/components/button/css/button.css";
+
+/* Propeller alert */
+@import "http://propeller.in/components/alert/css/alert.css";
 .objects {
     display:inline-block;
     background-color: white;
@@ -41,7 +48,7 @@ body {
 #main {
     width: 2000px;
     height:200px;
-    
+
     /* margin: auto; */
     /* display: inline-block;  */
     white-space: nowrap;
@@ -175,7 +182,7 @@ h6 {
     border-radius: 50%;
     padding: 5px
 }
-.divimg { 
+.divimg {
     width: 80px;
     height:80px;
     background-repeat: no-repeat;
@@ -186,6 +193,16 @@ h6 {
     color: white;
     /* margin: px; */
     box-shadow: 2px 2px 2px #999;
+
+}
+
+.divimg:hover{
+  background: blue;
+  cursor: pointer;
+  -moz-transition: all .2s ease-in;
+   -o-transition: all .2s ease-in;
+   -webkit-transition: all .2s ease-in;
+   transition: all .2s ease-in;
 
 }
 
@@ -219,12 +236,12 @@ input[type=text] {
         display: inline-block; */
     /* } */
 }
-/* 
+/*
 #carousel {
     width: 100%;
     height: 150px;
     background-color: #ff0000;
-    
+
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
@@ -286,7 +303,7 @@ input[type=text] {
   .scrolling-wrapper::-webkit-scrollbar, .scrolling-wrapper-flexbox::-webkit-scrollbar {
     display: none;
   }
-  
+
 .subClass {
     height: 190px;
     width: 170px;
@@ -326,7 +343,7 @@ input[type=text] {
 
 
 .pmd-badge.pmd-badge-overlap::after {
-    
+
     top: -43px;
     right: -15px;
 }

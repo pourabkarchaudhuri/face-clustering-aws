@@ -31,12 +31,15 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Propeller Global js -->
+
     <!-- <link rel="stylesheet" href="src/css/style.css"> -->
 
     <!-- END: Styles -->
 
     <!-- jQuery -->
     <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="js/app.js"></script>
     <script>
         $(function () {
           $('[data-toggle="tooltip"]').tooltip()
@@ -47,10 +50,6 @@
 
 
 <body>
-
-
-
-
 
     <header class="nk-header nk-header-opaque">
         <nav class="nk-navbar nk-navbar-top">
@@ -87,7 +86,7 @@
     <div class="nk-main bg-white">
         <!-- START: Digital. Modern. Creative -->
         <div class="container">
-                
+
             <div class="row">
                 <div class="col-lg-6">
                     <!-- <div class="nk-gap-5 mnt-4"></div> -->
@@ -116,48 +115,21 @@
         <div class="container">
             <!-- START: Filter -->
             <button onClick="window.location.reload();" type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-primary" data-toggle="tooltip" data-placement="top" title="Resets people groups">Refresh</button>
-            <button onclick="readDropZone()" type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-success" style="margin-left: 0px;">Save & Train</button>
-            <button data-target="#complete-dialog" data-toggle="modal" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">Alert with title bar</button>
-
-              <div tabindex="-1" class="modal fade" id="complete-dialog" style="display: none;" aria-hidden="true">
-              	<div class="modal-dialog">
-              		<div class="modal-content">
-              			<div class="modal-header">
-              				<h2 class="pmd-card-title-text">Are you sure you want to Train?</h2>
-              			</div>
-              			<div class="modal-body">
-              				<p>This is going to add faces to our recognition system with the names you have given. Please go back and make sure names are proper.</p>
-              			</div>
-              			<div class="pmd-modal-action pmd-modal-bordered text-right">
-              				<button data-dismiss="modal" class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Back</button>
-              				<button data-dismiss="modal" type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default">Proceed & Train</button>
-              			</div>
-              		</div>
-              	</div>
-              </div>
-            <!-- <ul class="nk-isotope-filter nk-isotope-filter-active text-left">
-                <li class="active" data-filter="*">All</li>
-                <li data-filter="Branding">Branding</li>
-                <li data-filter="Print">Print</li>
-                <li data-filter="Design">Design</li>
-                <li data-filter="Branding">Cluster 0</li>
-                <li data-filter="Cluster_1">Cluster 1</li>
-                <li data-filter="Cluster_2">Cluster 2</li>
-                <li data-filter="Cluster_3">Cluster 3</li>
-                <li data-filter="Cluster_4">Cluster 4</li>
-                <li data-filter="Cluster_5">Cluster 5</li>
-            </ul> -->
+            <!-- <button onclick="readDropZone()" type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-success" data-toggle="tooltip" data-placement="top" title="Trains Macy with Faces" style="margin-left: 10px;">Save & Train</button> -->
+            <button id="submit-btn-id" type="button"  data-positionX="right" data-positionY="top"  data-duration="10000" data-effect="fadeInUp" data-message="Training Macy with Labeled faces" data-type="success" class="btn pmd-ripple-effect btn-success pmd-z-depth pmd-alert-toggle" data-toggle="tooltip" data-placement="top" title="Trains Macy with Faces" style="margin-left: 10px;">Save & Train</button>
+            <!-- <button type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-success" data-toggle="tooltip" data-placement="top" title="Trains Macy with Faces" style="margin-left: 10px;">Save & Train</button> -->
             <div id="myBtnContainer"></div>
-            <p class="lead mb-30" id="app_status">Status</p>
+            <!-- <p class="lead mb-30" id="app_status">Status</p> -->
             <hr>
-            <div class="albums" id="drop_zones">
-                    
-            </div>
-           
+
+            <div class="albums" id="drop_zones"></div>
+
+            <hr>
+
             <div class="mainContainer">
                 <div id="main"></div>
             </div>
-            
+
 
             </div>
             <div class="nk-gap-5"></div>
@@ -166,6 +138,21 @@
     </div>
 
     <!-- START: Scripts -->
+    <!-- jquery js -->
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+
+<!-- Bootstrap js -->
+<!-- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+
+<!-- Propeller Global js -->
+<script src="http://propeller.in/components/global/js/global.js"></script>
+
+<!-- Propeller ripple effect js -->
+<script type="text/javascript" src="http://propeller.in/components/button/js/ripple-effect.js"></script>
+
+<!-- Propeller alerts js -->
+<script type="text/javascript" src="http://propeller.in/components/alert/js/alert.js"></script>
+
     <script src="assets/bower_components/tether/dist/js/tether.min.js"></script>
     <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="js/call.js"></script>

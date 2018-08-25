@@ -51,17 +51,17 @@ function _(id){
 
 var droppedIn = false;
 function drag_start(event) {
-    _('app_status').innerHTML = "Dragging the "+event.target.getAttribute('id');
+    // _('app_status').innerHTML = "Dragging the "+event.target.getAttribute('id');
     event.dataTransfer.dropEffect = "move";
     event.dataTransfer.setData("text", event.target.getAttribute('id') );
 }
 
 function drag_enter(event) {
-    _('app_status').innerHTML = "You are dragging over the "+event.target.getAttribute('id');
+    // _('app_status').innerHTML = "You are dragging over the "+event.target.getAttribute('id');
 }
 
 function drag_leave(event) {
-    _('app_status').innerHTML = "You left the "+event.target.getAttribute('id');
+    // _('app_status').innerHTML = "You left the "+event.target.getAttribute('id');
 }
 
 function drag_drop(event) {
@@ -94,9 +94,9 @@ function drag_drop(event) {
         //                 var requiredDiv = childDiv.getElementsByTagName('div')[0];
         //                 var value2 = parseInt(requiredDiv.getAttribute('data-badge'));
         //                 requiredDiv.setAttribute('data-badge', value2 - 1);
-    
+
         //             }
-                    
+
         //         }
 
         //     }
@@ -122,11 +122,11 @@ function drag_drop(event) {
             c = 0;
         }
 
-        
+
 
 
     }
-    _('app_status').innerHTML = "Dropped "+elem_id+" into the "+event.target.getAttribute('id');
+    // _('app_status').innerHTML = "Dropped "+elem_id+" into the "+event.target.getAttribute('id');
     //  _(elem_id).removeAttribute("draggable");
     // _(elem_id).classList.remove('column');
     // _(elem_id).style.height = '50px';
@@ -138,7 +138,7 @@ function drag_drop(event) {
 
 function drag_end(event) {
     if(droppedIn == false){
-        _('app_status').innerHTML = "You let the "+event.target.getAttribute('id')+" go.";
+        // _('app_status').innerHTML = "You let the "+event.target.getAttribute('id')+" go.";
     }
     droppedIn = false;
 }

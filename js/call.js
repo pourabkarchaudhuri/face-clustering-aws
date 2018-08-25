@@ -31,7 +31,7 @@ $.ajax({
             subDiv.setAttribute('id-att', obj.name);
 
             // subDiv.setAttribute('draggable', 'false');
-            
+
             document.getElementById('drop_zones').appendChild(subDiv);
             // subDiv.style.border = '1px solid red';
 
@@ -56,6 +56,12 @@ $.ajax({
             imgInnerElement.className = 'divimg btn';
             imgInnerElement.setAttribute('src', obj.images[0]);
             imgInnerElement.setAttribute('onclick', "filterSelection('"+obj.name+"')")
+
+            imgInnerElement.setAttribute('data-toggle', 'tooltip');
+            imgInnerElement.setAttribute('data-placement', 'top');
+            imgInnerElement.setAttribute('title', 'Click to Filter');
+            imgInnerElement.setAttribute('draggable', 'false');
+
             // var btn_id = "btn_" + obj.name;
             // btn.id = btn_id;
             // btn.innerHTML = obj.name;
@@ -81,12 +87,12 @@ $.ajax({
             badgeDiv.className = "material-icons pmd-md pmd-badge pmd-badge-overlap badge-postition";
             badgeDiv.id = 'badge';
             dz_div.appendChild(badgeDiv)
-            
 
 
 
 
-            
+
+
             // var cName = document.createElement('h6');
             // cName.id = obj.name;
             // cName.innerHTML = obj.name;
@@ -102,7 +108,9 @@ $.ajax({
                 img1.className = "objects column cover-item " + obj.name;
                 img1.setAttribute("path", obj.name  );
                 img1.setAttribute('badge-edit', obj.name + i);
+
                 // img1.setAttribute('draggable', 'false');
+                //data-toggle="tooltip" data-placement="top" title="Resets people groups"
                 img1.setAttribute('ondragstart', 'drag_start(event)');
                 img1.setAttribute('ondragend', 'drag_end(event)');
                 document.getElementById('main').appendChild(img1);
@@ -112,7 +120,7 @@ $.ajax({
         })
 
         document.getElementById('main').style.width =  imgCount * 110 +"px";
-        
+
 
     },
     dataType: "JSON"
