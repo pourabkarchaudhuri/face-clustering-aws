@@ -39,3 +39,15 @@ var name = "LokeshKosuri";
 name = name.replace(/ /g, "_");
 
 console.log(name);
+
+
+
+
+console.log(event.dataTransfer.getData('text'));
+    $('img[id="'+ event.dataTransfer.getData('text') +'"]').each(function(i, el) {
+        // var childDiv = element.getElementsByTagName('div')[0];
+        // var requiredDiv = childDiv.getElementsByTagName('div')[0];
+        _(event.target.id).getElementsByTagName('img')[0].src = _(event.dataTransfer.getData('text')).src;
+
+        console.log("DRAG AND DROP: " + _(event.target.id).getElementsByTagName('img')[0].src);
+    });

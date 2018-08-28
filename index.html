@@ -10,12 +10,9 @@
     <meta name="description" content="Project Oversight Tagging Gallery">
     <meta name="keywords" content="portfolio, clean, minimal, blog, template, portfolio website">
     <meta name="author" content="robirurk">
-
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- START: Styles -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500%7cNunito+Sans:400,600,700%7cPT+Serif:400,400i" rel="stylesheet" type="text/css">
@@ -23,19 +20,15 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/bower_components/fontawesome/css/font-awesome.min.css">
-
+    <!-- <link rel="stylesheet" href="assets/bower_components/fontawesome/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css" integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/solid.css" integrity="sha384-wnAC7ln+XN0UKdcPvJvtqIH3jOjs9pnKnq9qX68ImXvOGz2JuFoEiCjT8jyZQX2z" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/piroll.css">
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- Propeller Global js -->
-
-    <!-- <link rel="stylesheet" href="src/css/style.css"> -->
-
-    <!-- END: Styles -->
 
     <!-- jQuery -->
     <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
@@ -44,25 +37,17 @@
         $(function () {
           $('[data-toggle="tooltip"]').tooltip()
         })
-        </script>
-
+    </script>
 </head>
-
-
 <body>
-
     <header class="nk-header nk-header-opaque">
         <nav class="nk-navbar nk-navbar-top">
             <div class="container">
                 <div class="nk-nav-table">
-
                     <a href="index.html" class="nk-nav-logo">
-
                         <img src="assets/images/logo.svg" alt="" width="31">
                     </a>
-
                     <ul class="nk-nav nk-nav-right nk-nav-icons">
-
                         <li class="single-icon hidden-lg-up">
                             <a href="#" class="nk-navbar-full-toggle">
                                 <span class="nk-icon-burger">
@@ -72,71 +57,57 @@
                                 </span>
                             </a>
                         </li>
-
-
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- END: Navbar -->
-
     </header>
 
     <!-- END: Navbar Mobile -->
     <div class="nk-main bg-white">
         <!-- START: Digital. Modern. Creative -->
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-6">
-                    <!-- <div class="nk-gap-5 mnt-4"></div> -->
-
                     <h2 class="display-4">Project Oversight</br>
                         <span class="text-main">Tagging Gallery</span>
                     </h2>
-                    <!-- <div class="nk-gap mnt-5"></div> -->
-
                     <p class="lead mb-30">These are clustered images from the latest video indexing results. Please click on each cluster and tag people.</p>
                 </div>
                 <div class="col-lg-6">
                     <!-- <div class="nk-gap-5 mnt-4"></div> -->
-
                     <div>
                       <span><img class="badge-class pull-right" draggable="false" src="assets/images/home-badge.png"></img></span>
-
-                      <!-- <span><img class="badge-class" src="assets/images/company-logo.png"></img></span> -->
                     </div>
-
                 </div>
             </div>
         </div>
 
-
         <!-- START: BODY -->
         <div class="container">
-            <!-- <img src="images/popup-footer.png" > -->
             <div id="no-data-alert" class="alert alert-info" role="alert" style="display: none;">
                 Good to go! There are no photos to tag as of now. You will get a mail when there are images to tag.
             </div>
         </div>
-        
         <div id="main-container-payload" class="container" style="display: none;">
             <!-- START: Filter -->
             <button onClick="window.location.reload();" type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-primary" data-toggle="tooltip" data-placement="top" title="Resets people groups">Refresh</button>
-            <!-- <button onclick="readDropZone()" type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-success" data-toggle="tooltip" data-placement="top" title="Trains Macy with Faces" style="margin-left: 10px;">Save & Train</button> -->
             <button id="submit-btn-id" onclick="readDropZone(event)" type="button"  data-positionX="right" data-positionY="top"  data-duration="10000" data-effect="fadeInUp" data-type="success" class="btn pmd-ripple-effect btn-success pmd-z-depth pmd-alert-toggle" data-toggle="tooltip" data-placement="top" title="Trains Macy with Faces" style="margin-left: 10px;">Save & Train</button>
-            <!-- <button id="submit-btn-id" onclick="readDropZone(event)" type="button"  data-positionX="right" data-positionY="top"  data-duration="10000" data-effect="fadeInUp" data-message="Training Macy with Labeled faces" data-type="success" class="btn pmd-ripple-effect btn-success pmd-z-depth pmd-alert-toggle" data-toggle="tooltip" data-placement="top" title="Trains Macy with Faces" style="margin-left: 10px;">Save & Train</button> -->
-            <!-- <button id="submit-btn-id" onclick="readDropZone(event)" type="button"  data-positionX="right" data-positionY="top"  data-duration="10000" data-effect="fadeInUp"  data-action="true" data-action-text="Ok" data-message="Training Macy with Labeled faces" data-type="success" class="btn pmd-ripple-effect btn-success pmd-z-depth pmd-alert-toggle" data-toggle="tooltip" data-placement="top" title="Trains Macy with Faces" style="margin-left: 10px;">Save & Train</button> -->
-            <!-- <button type="button" data-positionX="right" data-positionY="top" data-effect="fadeInUp" data-action="true" data-action-text="Ok" data-message="You have 3 messages" class="btn pmd-ripple-effect btn-default pmd-btn-raised pmd-alert-toggle"> Top Right</button> -->
-
-            <!-- <button type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-success" data-toggle="tooltip" data-placement="top" title="Trains Macy with Faces" style="margin-left: 10px;">Save & Train</button> -->
             <div id="myBtnContainer"></div>
-            <!-- <p class="lead mb-30" id="app_status">Status</p> -->
 
 <!-- Default scrollbar -->
             <hr>
+            <div id="delete">
+            <div class="subClass  badge-class pull-right" id-att="delete-area"><div class="album" droppable="true" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)"><img id='delete-area' class="divimg-bin divimg-image btn" src="https://cdn2.iconfinder.com/data/icons/metro-uinvert-dock/256/Recycle_Bin_Full.png" onclick="filterSelection('delete-area')" id-att="delete-area" data-toggle="tooltip" data-placement="top" title="" draggable="false" data-original-title="Click to Filter"><div data-badge="0" class="material-icons pmd-md pmd-badge div-pmd pmd-badge-overlap badge-postition data-badge-bin" id="badge"></div></div>
+            <button id="del-btn"  type="button" onclick="deleteObjects(event)" data-positionX="right" data-positionY="top"  data-duration="10000" data-effect="fadeInUp" data-type="warning" class="btn pmd-ripple-effect btn-danger pmd-z-depth pmd-alert-toggle" data-toggle="tooltip" data-placement="bottom" title="Delete photos">
+                    <i class="fas fa-broom"></i>
+                </button>
+            </div>
+            </div>
+                <div class="albums" id="drop_zones"></div>
 
-            <div class="albums" id="drop_zones"></div>
+            <!-- <span><img class="badge-class pull-right" draggable="false" src="assets/images/home-badge.png"></img></span> -->
 
             <hr>
 

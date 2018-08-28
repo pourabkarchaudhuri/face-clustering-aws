@@ -44,7 +44,7 @@ function sendMessage(){
 
   var target = $('#submit-btn-id');
   target.attr('data-og-text', target.html()).html("Training : <i class='fa fa-cog fa-spin'></i>");
-  $.ajax({
+  $.ajax({  
     type: "POST",
     crossDomain: true,
     url: "https://rzxagt9l02.execute-api.us-east-1.amazonaws.com/v1/train",

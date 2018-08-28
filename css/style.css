@@ -130,7 +130,7 @@ h1 {
 .albums {
     margin: auto 0;
     overflow: hidden;
-    width: 840px;
+    width: 915px;
 }
 .album {
     /* border: 3px dashed #ccc; */
@@ -202,11 +202,15 @@ h6 {
     color: white;
     /* margin: px; */
     box-shadow: 2px 2px 2px #999;
+    position: relative;
+    left: 2px;
+    top: 1px;
+    background-color: #EEC;
 
 }
 
 .divimg:hover{
-  background: blue;
+  background: #02578c;
   cursor: pointer;
   -moz-transition: all .2s ease-in;
    -o-transition: all .2s ease-in;
@@ -412,4 +416,39 @@ input[type=text]:focus, textarea:focus {
   /* padding: 3px 0px 3px 3px;
   margin: 5px 1px 3px 0px; */
   border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.divimg-bin:hover{
+    background: #ff000057;
+    cursor: pointer;
+    -moz-transition: all .2s ease-in;
+     -o-transition: all .2s ease-in;
+     -webkit-transition: all .2s ease-in;
+     transition: all .2s ease-in;
+  
+  }
+
+.div-pmd[data-badge]::after {
+    background: #df0024;
+}
+
+.divimg-image {
+    width: 80px;
+    height:80px;
+    background-repeat: no-repeat;
+    background-size: contain; /*background-attachment: fixed;*/ ;
+    /* border: 1px solid black; */
+    border-radius: 50%;
+    padding: 7px;
+    color: white;
+    /* margin: px; */
+    box-shadow: 2px 2px 2px #999;
+
+}
+
+#del-btn {
+    border-radius: 50%;
+    position: relative;
+    left: 52px;
+    box-shadow: 2px 2px 2px #999;
 }

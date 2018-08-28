@@ -154,6 +154,31 @@ app.post('/tagData', function(req, res) {
     // res.send("success");
 });
 
+app.post('/deleteObjects', function(req, res) {
+    if (typeof req.body.images !== 'undefined' && req.body.images.length > 0) {
+        s3_test.DeleteMultipleObject(req.body.images, (err, result) => {
+            console.log(result);
+            if (err) {
+                res.status(200).json({
+                    "status": 400,
+                    "message": "Error Occurred"
+                })
+            } else {
+                res.status(200).json({
+                    "status": 200,
+                    "message": "deleted successfully"
+                })
+            }
+        })
+    } else {
+        res.status(200).json({
+            "status": 415,
+            "message": "There are no images in the bin to delete"
+        })
+    }
+});
+
+
 // Start the server
 app.listen(port);
 console.log("Server has booted up successfully at PORT : " + port);

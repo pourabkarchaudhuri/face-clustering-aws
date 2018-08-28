@@ -69,5 +69,28 @@ module.exports = {
             } // successful response
         });
 
+    }, //End od DeleteObject queryHandlers
+
+    'DeleteMultipleObject': function(objectList, callback) {
+        console.log("Multiple Delete Object Module");
+        var params = {
+            Bucket: BUCKET_NAME,
+            Delete:{
+                Objects:objectList
+            },
+                
+            Quiet: true
+        };
+        s3.deleteObjects(params, function(err, data) {
+            if (err) {
+                console.log(err, err.stack);
+                callback(err, null)
+            } // an error occurred
+            else {
+                console.log(data);
+                callback(null, data) //OLD_KEY is the old path
+            } // successful response
+        });
+
     } //End od DeleteObject queryHandlers
 }
