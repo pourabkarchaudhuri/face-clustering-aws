@@ -3,6 +3,8 @@
 $(function () {
 //On Page load behavior
 // $('#no-data-alert').hide();
+// var target_drop = $('#add_drop');
+// target.attr('data-og-text', target.html()).html();
 $(".mainContainer").mCustomScrollbar({
     axis:"x" // vertical and horizontal scrollbar
 });

@@ -98,15 +98,23 @@
 
 <!-- Default scrollbar -->
             <hr>
+
+            <div class="badge-class pull-right">
             <div id="delete">
-            <div class="subClass  badge-class pull-right" id-att="delete-area"><div class="album" droppable="true" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)"><img id='delete-area' class="divimg-bin divimg-image btn" src="https://cdn2.iconfinder.com/data/icons/metro-uinvert-dock/256/Recycle_Bin_Full.png" onclick="filterSelection('delete-area')" id-att="delete-area" data-toggle="tooltip" data-placement="top" title="" draggable="false" data-original-title="Click to Filter"><div data-badge="0" class="material-icons pmd-md pmd-badge div-pmd pmd-badge-overlap badge-postition data-badge-bin" id="badge"></div></div>
+            <div class="subClass" id-att="delete-area"><div class="album" droppable="true" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)"><img id='delete-area' class="divimg-bin divimg-image btn" src="https://cdn2.iconfinder.com/data/icons/metro-uinvert-dock/256/Recycle_Bin_Full.png" onclick="filterSelection('delete-area')" id-att="delete-area" data-toggle="tooltip" data-placement="top" title="" draggable="false" data-original-title="Click to Filter"><div data-badge="0" class="material-icons pmd-md pmd-badge div-pmd pmd-badge-overlap badge-postition data-badge-bin" id="badge"></div></div>
             <button id="del-btn"  type="button" onclick="deleteObjects(event)" data-positionX="right" data-positionY="top"  data-duration="10000" data-effect="fadeInUp" data-type="warning" class="btn pmd-ripple-effect btn-danger pmd-z-depth pmd-alert-toggle" data-toggle="tooltip" data-placement="bottom" title="Delete photos">
                     <i class="fas fa-broom"></i>
                 </button>
             </div>
             </div>
-                <div class="albums" id="drop_zones"></div>
 
+            <div id-att='add_drop_zone'><div id='add_zone' onclick="addDropZones()" style="border: 3px dashed rgb(204, 204, 204);"></div>
+                </div>
+            </div>
+            <div>
+                <div class="albums" id="drop_zones">
+                    <!-- <div badge-edit="Person-54" id-att="Person-5"><div id="Person-5" class="album" droppable="true" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" style="border: 3px dashed rgb(204, 204, 204);"><img id="Person-5" class="divimg btn" src="https://s3.amazonaws.com/finddistinctpeoplevideo-s3bucket-1qk0wkjv5fx/supervised_training/4_20.png" onclick="filterSelection('Person-5')" data-toggle="tooltip" data-placement="top" title="" draggable="false" data-original-title="Click to Filter"></div> -->
+                </div>
             <!-- <span><img class="badge-class pull-right" draggable="false" src="assets/images/home-badge.png"></img></span> -->
 
             <hr>

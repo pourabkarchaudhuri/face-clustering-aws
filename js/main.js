@@ -383,3 +383,97 @@ function deleteObjects(event) {
         }
     }
 }
+
+function addDropZones() {
+    var subDiv = document.createElement('div');
+    subDiv.className = "subClass";
+    subDiv.setAttribute('badge-edit', "Person-" + (_("drop_zones").children.length + 1));
+    subDiv.setAttribute('id-att', "Person-" + (_("drop_zones").children.length + 1));
+
+    document.getElementById('drop_zones').appendChild(subDiv);
+
+    var dz_div = document.createElement('div');
+    var id_div = "Person-" + _("drop_zones").children.length;
+    dz_div.id = id_div;
+    dz_div.className = 'album';
+    dz_div.setAttribute('droppable', 'true')
+    dz_div.setAttribute('ondragenter', 'drag_enter(event)');
+    dz_div.setAttribute('ondrop', 'drag_drop(event)');
+    dz_div.setAttribute('ondragover', 'return false');
+    dz_div.setAttribute('ondragleave', 'drag_leave(event)');
+
+    var imgInnerElement = document.createElement('img');
+    imgInnerElement.id = "Person-" + _("drop_zones").children.length;
+    imgInnerElement.className = 'divimg btn';
+    imgInnerElement.setAttribute('src', 'https://i.imgur.com/karbtGL.jpg');
+    imgInnerElement.setAttribute('onclick', "filterSelection('" + `Person-` + _(`drop_zones`).children.length +"')");
+
+    imgInnerElement.setAttribute('data-toggle', 'tooltip');
+    imgInnerElement.setAttribute('data-placement', 'top');
+    imgInnerElement.setAttribute('title', 'Click to Filter');
+    imgInnerElement.setAttribute('draggable', 'false');
+
+    var inputElement = document.createElement('input');
+    inputElement.setAttribute('type', 'text');
+    inputElement.setAttribute('required', 'true');
+    inputElement.id = "Person-" + (_("drop_zones").children.length);
+    inputElement.className = 'input-class';
+    inputElement.style.textAlign = "center";
+    inputElement.setAttribute('spellcheck','false');
+    inputElement.placeholder = "Person-" + (_("drop_zones").children.length);
+    inputElement.name = "Person-" + (_("drop_zones").children.length);
+    subDiv.appendChild(dz_div);
+    document.getElementById(id_div).appendChild(imgInnerElement);
+    // document.getElementById(id_div).innerHTML = '<i class="fas fa-times"></i>';
+
+    subDiv.appendChild(inputElement);
+
+    var badgeDiv = document.createElement('div');
+    badgeDiv.setAttribute('data-badge', 0);
+    badgeDiv.className = "material-icons pmd-md pmd-badge pmd-badge-overlap badge-postition";
+    badgeDiv.id = 'badge';
+    dz_div.appendChild(badgeDiv);
+
+    var closeButton = document.createElement('button');
+    closeButton.id = "Person-" + _("drop_zones").children.length;
+    closeButton.className = 'close_btn  pmd-ripple-effect pmd-z-depth pmd-alert-toggle';
+    closeButton.setAttribute('id-att', "Person-" + _("drop_zones").children.length);
+    closeButton.setAttribute('data-positionX', 'right');
+    closeButton.setAttribute('data-positionY', 'top');
+    closeButton.setAttribute('data-duration', '10000');
+    closeButton.setAttribute('data-effect', 'fadeInUp');
+    closeButton.setAttribute('data-type', 'warning');
+    closeButton.setAttribute('onclick', `deleteDropZone('Person-${_("drop_zones").children.length}', event)`);
+    closeButton.innerHTML = '<i class="fas fa-times"></i>';
+    dz_div.appendChild(closeButton);
+
+}
+
+function deleteDropZone(element, event) {
+    console.log(event, element);
+    for(var i=0; i < _("drop_zones").children.length; i++) {
+        var element_id_att = _("drop_zones").children[i].getAttribute('id-att');
+
+        if (element == element_id_att) {
+            var outerDiv = _("drop_zones").children[i]
+            var childDiv = outerDiv.getElementsByTagName('div')[0];
+            var requiredDiv = childDiv.getElementsByTagName('div')[0];
+            console.log(requiredDiv);
+            var buttonElement = childDiv.getElementsByTagName('button')[0];
+            var value2 = parseInt(requiredDiv.getAttribute('data-badge'));
+            if (value2 != 0) {
+                var id = "#" + event.target.getAttribute('id');
+                var target = $(id);
+                console.log(event + "TARGET");
+                buttonElement.setAttribute('data-message', "Please remove or delete image(s) from the cluster first to delete the cluster.");
+                buttonElement.setAttribute('data-type', 'warning');
+            } else {
+                buttonElement.setAttribute('data-message', "Cluster is successfully removed.");
+                buttonElement.setAttribute('data-type', 'success');
+                setTimeout(() => {
+                    $('div[id-att="'+ element_id_att + '"]').remove();
+                }, 0)
+            }
+        }
+    }
+}
