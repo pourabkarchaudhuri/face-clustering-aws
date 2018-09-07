@@ -1,12 +1,15 @@
 // Loading dependencies.
 var request = require('request');
+require('dotenv').config()
+
+
 
 module.exports = {
     'getLabel': function(name, callback) {
         // console.log("Incoming Event : " + event);
             var options = { 
                 method: 'GET',
-                url: 'https://rzxagt9l02.execute-api.us-east-1.amazonaws.com/v1/query',
+                url: process.env.REKOG_API + '/' + process.env.API_VERSION + '/query',
                 qs: { path: name },
                 headers: {
                     'Content-Type': 'application/json'

@@ -29,18 +29,16 @@
     <link rel="stylesheet" href="dist/assets/css/style.css">
     <!-- Propeller Global js -->
 
-    <link href="https://vjs.zencdn.net/7.1.0/video-js.css" rel="stylesheet">
-
     <!-- jQuery -->
     <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
-    
+    <script src="dist/assets/js/app.js"></script>
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
 </head>
-<body>
+<body class="noselect">
     <header class="nk-header nk-header-opaque">
         <nav class="nk-navbar nk-navbar-top">
             <div class="container">
@@ -72,16 +70,14 @@
             <div class="row">
                 <div class="col-lg-6">
                     <h2 class="display-4">Project Oversight</br>
-                        <span class="text-main">Video Gallery</span>
+                        <span class="text-main">Tagging Gallery</span>
                     </h2>
-                    <p class="lead mb-30">These are indexed videos uploaded from various sources. Please click on each video and tag people.</p>
+                    <p class="lead mb-30">These are clustered images from the latest video indexing results. Please click on each cluster and tag people.</p>
                 </div>
                 <div class="col-lg-6">
                     
                     <div>
-                        <span>
-                            <img class="badge-class pull-right" draggable="false" src="assets/images/home-badge.png"></img>
-                        </span>
+                        <span><img class="badge-class pull-right" draggable="false" src="assets/images/home-badge.png"></img></span>
                     </div>
                 </div>
             </div>
@@ -90,33 +86,61 @@
         <!-- START: BODY -->
         <div class="container">
             <div id="no-data-alert" class="alert alert-info" role="alert" style="display: none;">
-                Good to go! There are no videos in the gallery to tag as of now. You will get a mail when there are videos available to tag.
+                Good to go! There are no photos to tag as of now. You will get a mail when there are images to tag.
             </div>
         </div>
 
-        <div id="main-container-payload" class="container" style="display:none;">
+        <div id="main-container-payload" class="container" style="display: none;">
             <!-- START: Filter -->
-            <div class="row">
-                <div class="col-12 center text-center align-center">
-                    <button onClick="window.location.reload();" type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-primary" data-toggle="tooltip" data-placement="top" title="Reloads videos">Refresh</button>
+            <button onClick="window.location.reload();" type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-primary" data-toggle="tooltip" data-placement="top" title="Resets people groups">Refresh</button>
+            <button id="submit-btn-id" onclick="readDropZone(event)" type="button"  data-positionX="right" data-positionY="top"  data-duration="10000" data-effect="fadeInUp" data-type="success" class="btn pmd-ripple-effect btn-success pmd-z-depth pmd-alert-toggle" data-toggle="tooltip" data-placement="top" title="Trains Macy with Faces" style="margin-left: 10px;">Save & Train</button>
+            <button type="button" onclick="deleteAllInitiated(event)" class="btn btn-danger btn pmd-ripple-effect btn-primary pmd-z-depth" data-target="#remove-all" data-toggle="modal" style="margin-left: 10px;"> DELETE ALL </button >
+            <!-- <div id="myBtnContainer"></div> -->
+            <div class="pull-right">
+            <div id="cluster-counter"class="pmd-badge pmd-badge-overlap pmd-badge-text notify-text" style="color: #5cb85c;">12&nbsp;&nbsp;</div><span class="notify-label">&nbsp;People&nbsp;&nbsp;</span>
+            <div id="faces-counter" class="pmd-badge pmd-badge-overlap pmd-badge-text notify-text" style="color: #03a9f4;">12&nbsp;&nbsp;</div><span class="notify-label">&nbsp;Photos</span>
+            </div>
+
+<!-- Default scrollbar -->
+            <hr>
+
+            <div class="badge-class pull-right">
+            <div id="delete">
+            <div class="subClass" id-att="delete-area"><div class="album" droppable="true" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)"><img id='delete-area' class="divimg-bin divimg-image btn" src="assets/images/bin.png" onclick="filterSelection('delete-area')" id-att="delete-area" data-toggle="tooltip" data-placement="top" title="" draggable="false" data-original-title="Click to Filter"><div data-badge="0" class="material-icons pmd-md pmd-badge div-pmd pmd-badge-overlap badge-postition data-badge-bin" id="badge"></div></div>
+            <button id="del-btn"  type="button" onclick="deleteObjects(event)" data-positionX="right" data-positionY="top"  data-duration="10000" data-effect="fadeInUp" data-type="warning" class="btn pmd-ripple-effect btn-danger pmd-z-depth pmd-alert-toggle" data-toggle="tooltip" data-placement="bottom" title="Delete photos">
+                    <i class="fas fa-broom"></i>
+                </button>
+            </div>
+            </div>
+
+            <div id-att='add_drop_zone'><div id='add_zone' onclick="addDropZones()" style="border: 3px dashed rgb(204, 204, 204);"></div>
                 </div>
             </div>
 
-            <div class="video-albums row"></div>
+            <div>
+                    
+                <div class="albums" id="drop_zones"></div>
 
 
+            <hr>
 
-        </div>
+            <div class="mainContainer pmd-scrollbar mCustomScrollbar" id="content-2">
 
-        <div class="nk-gap-5"></div>
+                <div id="main"></div>
+            </div>
 
-        <div class="container">
-            <small class="display-10 pull-right">© 2018 Hexaware Innovation Lab</small>
-        </div>
+
+            </div>
+            <div class="nk-gap-5"></div>
+            <!-- <div class="container">
+                                    <img src="images/popup-footer.png" >
+                    <small class="display-10 pull-right">© 2018 Hexaware Innovation Lab</small>
+                </div> -->
 
         </div>
 
     </div>
+
 
             <div tabindex="-1" class="modal fade" id="alert-dialog" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog">
@@ -125,6 +149,18 @@
                         <div class="pmd-modal-action text-right">
                             <button id="confirmDelete" data-dismiss="modal"  data-positionX="right" data-positionY="top"  data-duration="10000" data-effect="fadeInUp"  class="btn pmd-ripple-effect btn-primary pmd-btn-flat pmd-alert-toggle" onclick="confirmDeleteZone(event)" type="button">Yes, I'm sure</button>
                             <button id="discardDelete" data-dismiss="modal"  data-positionX="right" data-positionY="top"  data-duration="10000" data-effect="fadeInUp"  class="btn pmd-ripple-effect btn-default pmd-btn-flat pmd-alert-toggle" onclick="discardDeleteZone(event)" type="button">Discard</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div tabindex="-1" class="modal fade" id="remove-all" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">You are about to delete all clusters. Are you absolutely sure?</div>
+                        <div class="pmd-modal-action text-right">
+                            <button id="confirmDeleteAll" data-dismiss="modal"  data-positionX="right" data-positionY="top"  data-duration="10000" data-effect="fadeInUp"  class="btn btn-success btn pmd-ripple-effect btn-primary pmd-btn-flat pmd-alert-toggle" onclick="confirmDeleteAllZone(event)" type="button">Yes, I'm sure</button>
+                            <button id="discardDeleteAll" data-dismiss="modal"  data-positionX="right" data-positionY="top"  data-duration="10000" data-effect="fadeInUp"  class=" btn btn-danger btn pmd-ripple-effect btn-default pmd-btn-flat pmd-alert-toggle" onclick="discardDeleteAllZone(event)" type="button">Discard</button>
                         </div>
                     </div>
                 </div>
@@ -147,11 +183,10 @@
 <script type="text/javascript" src="http://propeller.in/components/alert/js/alert.js"></script>
 
     <script src="assets/bower_components/tether/dist/js/tether.min.js"></script>
-
-    <script src="https://vjs.zencdn.net/7.1.0/video.js"></script>
-
-    <script src="dist/assets/js/getVideos.js"></script>
-    
+    <!-- <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
+    <script type="text/javascript" src="dist/assets/js/settings.js"></script>
+    <script src="dist/assets/js/call.js"></script>
+    <script src="dist/assets/js/process.js"></script>
     <script type="text/javascript" language="javascript" src="http://propeller.in/components/custom-scrollbar/js/jquery.mCustomScrollbar.js"></script>
 
 <script>
@@ -164,8 +199,6 @@
 	})(jQuery);
 </script>
     <!-- END: Scripts -->
-
-
 </body>
 
 </html>

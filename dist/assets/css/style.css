@@ -23,6 +23,8 @@
 
 /* Propeller scrollbar css*/
 @import "http://propeller.in/components/custom-scrollbar/css/pmd-scrollbar.css";
+
+@import "http://propeller.in/components/modal/css/modal.css";
 .objects {
     display:inline-block;
     background-color: white;
@@ -44,7 +46,7 @@ body {
 }
 
 /* Center website */
-.mainContainer{
+/* .mainContainer{
     overflow-x: auto;
     overflow-y: hidden;
 
@@ -53,6 +55,19 @@ body {
     height: 123px;
     margin: auto;
 
+} */
+
+.mainContainer{
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: block;
+    max-width: 1100px;
+    height: 123px;
+    margin: auto;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    padding-top: 7px;
 }
 #main {
     width: 2000px;
@@ -131,6 +146,7 @@ h1 {
     margin: auto 0;
     overflow: hidden;
     width: 860px;
+    /* white-space: nowrap; */
 }
 .album {
     /* border: 3px dashed #ccc; */
@@ -498,4 +514,75 @@ input[type=text]:focus, textarea:focus {
     font-size: 13px;
     color: #ffffff;
     background-color: #f12b2e;
+}
+
+.video-js .vjs-big-play-button{
+    left: 115px !important;
+    top: 100px !important;
+}
+
+.video-container{
+    margin-right:32px;
+    margin-left:32px;
+    margin-top:30px;
+}
+
+.video-label{
+    font-size:20px;
+    overflow-wrap: break-word;
+    width: 275px;
+    padding-top: 5px;
+}
+
+.video-timestamp{
+    font-size:10px;
+}
+
+.tag-btn{
+    padding: 12px;
+    height: 42px;
+    border-radius: 50%;
+    position: relative;
+    left: 52px;
+    box-shadow: 2px 2px 2px #999;
+    top: 4px;
+    left: -4px;
+}
+
+.count-btn {
+    border-radius: 50%;
+    position: relative;
+    left: 52px;
+    box-shadow: 2px 2px 2px #999;
+}
+
+.clusterContainer{
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    display: block;
+    width: 123px;
+    height: 100%;
+    margin: auto;
+
+}
+
+.notify-text{
+    font-size:30px;
+    font-weight: bold;
+}
+
+.notify-label{
+    font-size: 25px;
+    color: #00000059;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
 }

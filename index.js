@@ -23,6 +23,10 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/cluster', function(req, res) {
+  res.sendFile(__dirname + '/home.html');
+});
+
 
 /**
  * Routing to routes.js file

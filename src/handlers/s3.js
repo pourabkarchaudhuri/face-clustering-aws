@@ -1,4 +1,5 @@
 var AWS = require('aws-sdk');
+var moment = require('moment');
 require('dotenv').config()
 var fs = require('fs');
 var re = /(\d+)(_)(\d+)/g;
@@ -8,7 +9,9 @@ var request = require('request');
 var albumBucketName = process.env.ALBUM_BUCKET_NAME;
 var bucketRegion = process.env.BUCKET_REGION;
 var IdentityPoolId = process.env.IDENTITY_POOL_ID;
-var URL = process.env.URL;
+var URL = process.env.BUCKET_URL;
+var outputKey = process.env.OUTPUT_KEY
+var inputKey = process.env.VIDEO_KEY
 
 AWS.config.update({
     region: bucketRegion,
@@ -24,29 +27,33 @@ var s3 = new AWS.S3({
 
 module.exports = {
     // ListBuckets()
-    "ListBuckets": function (callback) {
+    "ListBuckets": function (video, callback) {
         var params = {
             Bucket: albumBucketName, /* required */
             FetchOwner: false,
             MaxKeys: 5000, //Play with this and Next Tokens
-            Prefix: 'supervised_training'
+            Prefix:  outputKey + '/' + video
         };
 
         s3.listObjectsV2(params, function (err, data) {
-            console.log(data);
+            var keyArray = [];
             if (err) console.log(err, err.stack); // an error occurred
-            if (data.KeyCount != 1) {
-                data.Contents.splice(0, 1);
+            // if (data.KeyCount != 1) {
+                // data.Contents.splice(0, 1);
                 var clusterIndex = [];
                 dataArray = [];
                 images = [];
                 var name = null;
                 data.Contents.forEach((element, i) => {
-                    element.Key.replace(re, (match, p1, p2, p3) => {
+                    keyArray.push(element.Key.split('/')[2]);
+                })
+                keyArray.forEach((element, i) => {
+                    element.replace(re, (match, p1, p2, p3) => {
                         clusterIndex.push(p1);
                     })
                 })
                 var uniqueClusterIndex = clusterIndex.filter((v, i, a) => a.indexOf(v) === i);
+                uniqueClusterIndex = uniqueClusterIndex.sort(function(a, b){return a - b});
                 uniqueClusterIndex.forEach((id) => {
                     name = "Person-" + (parseInt(id) + 1);
                     images = [];
@@ -67,19 +74,9 @@ module.exports = {
                             "data": dataArray
                         }
                         value = JSON.stringify(value);
-                        fs.writeFile("./untagged_values.json", value, function (err) {
-                            if (err) {
-                                console.log(err);
-                            }
-
-                            console.log("The file was saved!");
-                        });
                         callback(null, dataArray);
                     }
                 })
-            } else {
-                callback("no_data", null)
-            }
         });
     },
     "listBucketElements": function (callback) {
@@ -87,7 +84,7 @@ module.exports = {
             Bucket: albumBucketName, /* required */
             FetchOwner: false,
             MaxKeys: 5000, //Play with this and Next Tokens
-            Prefix: 'supervised_training'
+            Prefix: outputKey
         };
 
         s3.listObjectsV2(params, function (err, data) {
@@ -96,8 +93,6 @@ module.exports = {
     },
     'DeleteMultipleObject': function (objectList, callback) {
         console.log("Multiple Delete Object Module");
-        console.log(objectList);
-        console.log(typeof (objectList));
         var params = {
             Bucket: albumBucketName,
             Delete: {
@@ -111,10 +106,62 @@ module.exports = {
                 callback(err, null)
             } // an error occurred
             else {
-                console.log(data);
                 callback(null, data) //OLD_KEY is the old path
             } // successful response
         });
 
-    }//End od DeleteObject queryHandlers
+    },//End od DeleteObject queryHandlers
+    "listVideoObjects": function (callback) {
+        var params = {
+            Bucket: albumBucketName, /* required */
+            FetchOwner: false,
+            MaxKeys: 5000, //Play with this and Next Tokens
+            Prefix: inputKey + '/'
+        };
+
+        s3.listObjectsV2(params, function (err, data) {
+            if (err) console.log(err, err.stack); // an error occurred
+            if (data.KeyCount != 1) {
+                data.Contents.splice(0, 1);
+                var videoObjectsArray = [];
+                data.Contents.forEach((element, i) => {
+                    var date = new Date(element.LastModified);
+                    var dt = moment(date).format('lll');
+                    videoObjectsArray.push({
+                        "videoURL": URL + element.Key,
+                        "videoName": element.Key.split('/')[1],
+                        "dateModified": dt
+                    });
+
+
+                    if (data.Contents.length == i + 1) {
+                        callback(null, videoObjectsArray);
+                    }
+                });
+            } else {
+                callback("no_data", null)
+            }
+        });
+    },
+    'listImageObjects': function (video, callback) {
+        var params = {
+            Bucket: albumBucketName, /* required */
+            FetchOwner: false,
+            MaxKeys: 5000, //Play with this and Next Tokens
+            Prefix: video
+        };
+
+        s3.listObjectsV2(params, function (err, data) {
+                // data.Contents.splice(0, 1);
+                var clusterIndex = [];
+
+                data.Contents.forEach((element, i) => {
+                    clusterIndex.push(element.Key);
+
+                    if (data.Contents.length == i + 1) {
+                        callback(null, clusterIndex);
+                    }
+                })
+        });
+    }
 }

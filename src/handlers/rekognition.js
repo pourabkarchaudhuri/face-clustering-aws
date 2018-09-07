@@ -14,14 +14,14 @@ module.exports = {
                     "images": name,
                     "name": result.results
                 });
-                console.log('Face processed : ' + result.results);
+                // console.log('Face processed : ' + result.results);
                 callback();
             })
         }, function (err, result) {
             if (err) {
                 console.log('A face failed to process');
             } else {
-                console.log(faces);
+                // console.log(faces);
                 cb(null, faces)
                 console.log('All faces have been processed successfully');
             }
