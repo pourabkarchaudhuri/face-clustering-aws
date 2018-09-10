@@ -135,6 +135,12 @@ module.exports = {
 
 
                     if (data.Contents.length == i + 1) {
+                        videoObjectsArray.sort(function(a, b) {
+                            // console.log(b);
+                            // Turn your strings into dates, and then subtract them
+                            // to get a value that is either negative, positive, or zero.
+                            return new Date(b.dateModified) - new Date(a.dateModified);
+                        });
                         callback(null, videoObjectsArray);
                     }
                 });

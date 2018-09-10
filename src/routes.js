@@ -83,6 +83,7 @@ router.post('/getPlaceholder', (req, res) => {
 
 router.get('/getAllClusterVideos', (req, res) => {
     s3Handlers.listVideoObjects((err, result) => {
+      
         if (err) {
             res.status(200).json({
                 "status": 400,
