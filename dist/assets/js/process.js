@@ -564,8 +564,8 @@ function updateClusterAndFacesCount() {
     setTimeout(() => {
         clusterCounter.innerHTML = _("drop_zones").children.length + " ";
     }, 0);
-    var facesCounter = document.getElementById('faces-counter');
-    facesCounter.innerHTML = document.getElementsByTagName('img').length + ' ';
+    // var facesCounter = document.getElementById('faces-counter');
+    // facesCounter.innerHTML = document.getElementsByTagName('img').length + ' ';
 }
 
 updateClusterAndFacesCount();
