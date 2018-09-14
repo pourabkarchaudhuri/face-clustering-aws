@@ -1,0 +1,371 @@
+Description: 'Provision the required resources for your blog post example "Find distinct people in a video with Amazon Rekognition"'
+
+Metadata:
+  License:
+    Description: 'Copyright 2017-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved. Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at http://aws.amazon.com/apache2.0/ or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.'
+
+Resources:
+
+  LambdaEtsCreateJobRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          -
+            Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Policies:
+        -
+          PolicyName: !Sub "${AWS::StackName}-ets-create-job"
+          PolicyDocument:
+            Statement:
+              -
+                Effect: Allow
+                Action:
+                  - elastictranscoder:CreateJob
+                Resource:
+                  - "*"
+              -
+                Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource:
+                  - !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/*"
+
+  LambdaS3RekognitionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          -
+            Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Policies:
+        -
+          PolicyName: !Sub "${AWS::StackName}-s3-rekognition-access"
+          PolicyDocument:
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - s3:ListBucket
+                Resource:
+                  - !Sub "arn:aws:s3:::${S3Bucket}"
+              -
+                Effect: Allow
+                Action:
+                  - s3:PutObject*
+                  - s3:GetObject*
+                Resource:
+                  - !Sub "arn:aws:s3:::${S3Bucket}/*"
+              -
+                Effect: Allow
+                Action:
+                  - rekognition:CreateCollection
+                  - rekognition:DeleteCollection
+                  - rekognition:IndexFaces
+                  - rekognition:SearchFaces
+                Resource:
+                  - "*"
+              -
+                Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource:
+                  - !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/*"
+
+  LambdaEtsDeploymentRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          -
+            Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: "/"
+      Policies:
+        -
+          PolicyName: !Sub "${AWS::StackName}-ets-resources"
+          PolicyDocument:
+            Statement:
+              -
+                Effect: Allow
+                Action:
+                  - elastictranscoder:CreatePipeline
+                  - elastictranscoder:CreatePreset
+                  - elastictranscoder:DeletePipeline
+                  - elastictranscoder:DeletePreset
+                Resource: "*"
+              -
+                Effect: Allow
+                Action:
+                  - iam:PassRole
+                Resource:
+                  - !Sub "arn:aws:iam::${AWS::AccountId}:role/*"
+              -
+                Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource:
+                  - !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/*"
+
+  LambdaS3SnsDeploymentRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          -
+            Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: "/"
+      Policies:
+        -
+          PolicyName: !Sub "${AWS::StackName}-s3sns-resources"
+          PolicyDocument:
+            Statement:
+              -
+                Effect: Allow
+                Action:
+                  - s3:GetObject*
+                Resource:
+                  - "*"
+              -
+                Effect: Allow
+                Action:
+                  - s3:PutObject*
+                Resource:
+                  - !Sub "arn:aws:s3:::${S3Bucket}/*"
+              -
+                Effect: Allow
+                Action:
+                  - s3:PutBucketNotification
+                Resource:
+                  - !Sub "arn:aws:s3:::${S3Bucket}"
+              -
+                Effect: Allow
+                Action:
+                  - sns:Subscribe
+                Resource:
+                  - !Sub "arn:aws:sns:${AWS::Region}:${AWS::AccountId}:*"
+              -
+                Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource:
+                  - !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/*"
+
+  EtsServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          -
+            Effect: Allow
+            Principal:
+              Service:
+                - elastictranscoder.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonElasticTranscoderRole
+
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+
+  EtsNotifications:
+    Type: AWS::SNS::Topic
+
+  EtsPreset:
+    Type: Custom::EtsPreset
+    Properties:
+      ServiceToken: !GetAtt LambdaEtsPreset.Arn
+
+  LambdaEtsPreset:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-create-ets-preset
+      Description: Creates Elastic Transcoder Preset
+      Handler: ets-preset.handler
+      Role: !GetAtt LambdaEtsDeploymentRole.Arn
+      Code:
+        S3Bucket: aws-bigdata-blog
+        S3Key: artifacts/Identify_Unique_People/resources.zip
+      Runtime: nodejs4.3
+      Timeout: 60
+
+  EtsPipeline:
+    Type: Custom::EtsPipeline
+    Properties:
+      ServiceToken: !GetAtt LambdaEtsPipeline.Arn
+      Name: !Sub "${AWS::StackName}"
+      Completed: !Ref EtsNotifications
+      Source: !Ref S3Bucket
+      Dest: !Ref S3Bucket
+      Role: !GetAtt EtsServiceRole.Arn
+
+  LambdaEtsPipeline:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-create-ets-pipeline
+      Description: Creates Elastic Transcoder Pipeline
+      Handler: ets-pipeline.handler
+      Role: !GetAtt LambdaEtsDeploymentRole.Arn
+      Code:
+        S3Bucket: aws-bigdata-blog
+        S3Key: artifacts/Identify_Unique_People/resources.zip
+      Runtime: nodejs4.3
+      Timeout: 60
+
+  LambdaFirstFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-first-function
+      Description: Triggered by Amazon S3 when a new object is uploaded into the bucket
+      Handler: first_function.lambda_handler
+      Role: !GetAtt LambdaEtsCreateJobRole.Arn
+      Code:
+        S3Bucket: aws-bigdata-blog
+        S3Key: artifacts/Identify_Unique_People/functions.zip
+      Runtime: python2.7
+      MemorySize: 128
+      Timeout: 60
+      Environment:
+        Variables:
+          PipelineId: !GetAtt EtsPipeline.PipelineId
+          PresetId: !GetAtt EtsPreset.PresetId
+
+  LambdaFirstFunctionPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !GetAtt LambdaFirstFunction.Arn
+      Action: lambda:InvokeFunction
+      Principal: s3.amazonaws.com
+      SourceAccount: !Ref AWS::AccountId
+      SourceArn: !Sub "arn:aws:s3:::${S3Bucket}"
+
+  S3Notification:
+    Type: Custom::S3Notification
+    Properties:
+      ServiceToken: !GetAtt LambdaS3Notification.Arn
+      Source: !Ref S3Bucket
+      IngestArn: !GetAtt LambdaFirstFunction.Arn
+
+  LambdaS3Notification:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-s3-notification"
+      Description: Creates S3 Subscription
+      Handler: s3-notification.handler
+      Role: !GetAtt LambdaS3SnsDeploymentRole.Arn
+      Code:
+        S3Bucket: aws-bigdata-blog
+        S3Key: artifacts/Identify_Unique_People/resources.zip
+      Runtime:  nodejs4.3
+      Timeout: 60
+
+  LambdaSecondFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-second-function
+      Description: Triggered by Elastic Transcoder when a job completes
+      Handler: second_function.lambda_handler
+      Role: !GetAtt LambdaS3RekognitionRole.Arn
+      Code:
+        S3Bucket: aws-bigdata-blog
+        S3Key: artifacts/Identify_Unique_People/functions.zip
+      Runtime:  python2.7
+      Timeout: 300
+      MemorySize: 1536
+      Environment:
+        Variables:
+          Bucket: !Ref S3Bucket
+
+  LambdaSecondFunctionPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !GetAtt LambdaSecondFunction.Arn
+      Action: lambda:InvokeFunction
+      Principal: sns.amazonaws.com
+      SourceArn: !Ref EtsNotifications
+
+  SnsSubscription:
+    Type: Custom::SnsNotification
+    Properties:
+      ServiceToken: !GetAtt LambdaSnsSubscription.Arn
+      EtsNotifications: !Ref EtsNotifications
+      PublishArn: !GetAtt LambdaSecondFunction.Arn
+
+  LambdaSnsSubscription:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-sns-subscription"
+      Description: Creates SNS Subscription
+      Handler: sns-subscription.handler
+      Role: !GetAtt LambdaS3SnsDeploymentRole.Arn
+      Code:
+        S3Bucket: aws-bigdata-blog
+        S3Key: artifacts/Identify_Unique_People/resources.zip
+      Runtime:  nodejs4.3
+      Timeout: 60
+
+  S3Copy:
+    Type: Custom::S3Copy
+    Properties:
+      ServiceToken: !GetAtt LambdaS3Copy.Arn
+      CopySource: 'aws-bigdata-blog/artifacts/Identify_Unique_People/video.mp4'
+      Bucket: !Ref S3Bucket
+      Key: 'input/video.mp4'
+    DependsOn:
+      - SnsSubscription
+      - LambdaSecondFunctionPermission
+      - S3Notification
+      - LambdaFirstFunctionPermission
+
+  LambdaS3Copy:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-s3-copy"
+      Description: Copy a video file from a public S3 bucket to your S3 bucket
+      Handler: s3-copy.handler
+      Role: !GetAtt LambdaS3SnsDeploymentRole.Arn
+      Code:
+        S3Bucket: aws-bigdata-blog
+        S3Key: artifacts/Identify_Unique_People/resources.zip
+      Runtime:  nodejs4.3
+      Timeout: 60
+
+Outputs:
+
+  S3Bucket:
+    Description: Bucket
+    Value: !Ref S3Bucket
