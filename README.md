@@ -36,6 +36,17 @@ Oversight uses a number of open source projects to work properly:
 * Rekognition - Face Recognition and detection as a service
 * SNS - Notification service
 
+### Stack Creation
+
+Upload the `template.yaml` file to AWS CloudFormation and create the stack to build the necessary roles and requirements.
+
+### Upgrade Lambda
+
+Upload the `FindDistinctPeopleVideo-second-function.zip` under the `microservices` folder, and update the Lambda with the same name
+
+### Create Gateway Lambda
+
+Upload the `Image_Rekognition.zip` and under the `microservices` folder.
 
 ### Installation
 
